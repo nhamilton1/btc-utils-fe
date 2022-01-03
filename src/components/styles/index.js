@@ -1,8 +1,14 @@
 export const toolTipstyle = {
-    margin: '0px', 
     padding: '10px', 
-    backgroundColor: 'rgb(255, 255, 255)', 
-    border: '1px solid rgb(204, 204, 204)', 
+    backgroundColor: '#1f1f1f', 
+    border: '1px solid #1f1f1f', 
+    whiteSpace: 'nowrap', 
+    darkreader: 'inline', 
+}
+
+export const toolTipstyleCND = {
+    padding: '5px', 
+    backgroundColor: '#1f1f1f', 
     whiteSpace: 'nowrap', 
     darkreader: 'inline', 
 }

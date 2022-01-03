@@ -4,9 +4,10 @@ import { useQuery } from 'react-query'
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts'
 import { fetchPoolBlockCounterPerDay } from '../api'
 import { GetNewZPercent, GetZPercent, getMean, getStdDeviation, generatePoints } from '../helpers/NDfunctions'
-import { renderToolTip } from '../utils/renderToolTip'
+import { renderToolTip, renderToolTipCND } from '../utils/renderToolTip'
 import PoolSelector from './PoolSelector'
 import Layout from 'antd/lib/layout/layout'
+
 
 const NormalDistribution = () => {
 
@@ -55,7 +56,7 @@ const NormalDistribution = () => {
           <Area dataKey="z" fill="#ffaa15" name='z' animationEasing='ease-in' type='monotone' />
           <XAxis dataKey="x" orientation='bottom' scale='band' />
           <YAxis allowDataOverflow={true} type="number" domain={[0, 1]}/>
-          <Tooltip labelFormatter={(x) => `${x} blocks`} />
+          <Tooltip labelFormatter={(x) => `${x} blocks`} content={renderToolTipCND}/>
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>

@@ -1,4 +1,4 @@
-import { toolTipstyle } from '../components/styles';
+import { toolTipstyle, toolTipstyleCND } from '../components/styles';
 
 export const renderToolTip = props => {
     if (props.active) {
@@ -19,6 +19,22 @@ export const renderToolTip = props => {
                         {`${props.payload[0].payload['z']}% to get ${props.payload[0].payload['x']} blocks  `}
                     </div>
                 )}
+            </div>
+        );
+    }
+    return null;
+};
+
+export const renderToolTipCND = props => {
+    if (props.active) {
+        return (
+            <div>
+                <div style={toolTipstyleCND}>
+                    {` ${props.payload[0].payload['x']} blocks`}
+                </div>
+                <div style={toolTipstyleCND}>
+                    {`z score: ${props.payload[0].payload['z']}`}
+                </div>
             </div>
         );
     }

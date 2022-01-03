@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Layout } from "antd";
+import Navbar from './components/Navbar';
+import { Content } from "antd/lib/layout/layout";
+import NormalDistribution from "./components/NormalDistribution";
 
-function App() {
-  return (
+const App = () => {
+
+
+  return(
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar />
+       <Layout style={{ minHeight: "100vh" }}>
+        <Layout style={{margin: '2vh 2vw'}}>
+          <Content>
+            <NormalDistribution/>
+          </Content>
+        </Layout>
+      </Layout>
     </div>
-  );
-}
+  )
+};
 
 export default App;

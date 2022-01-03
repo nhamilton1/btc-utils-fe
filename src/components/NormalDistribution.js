@@ -24,7 +24,7 @@ const NormalDistribution = () => {
   }
 
 
-  const dataPoints = poolBlockCounterPerDay && Object.values(poolBlockCounterPerDay).sort((a, b) => a - b)
+  const dataPoints = Object.values(poolBlockCounterPerDay).sort((a, b) => a - b)
 
   const lowerBound = Math.min(...dataPoints), upperBound = Math.max(...dataPoints);
 

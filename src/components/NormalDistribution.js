@@ -39,9 +39,6 @@ const NormalDistribution = () => {
 
   return (
     <Layout>
-      {
-        !poolBlockCounterPerDay ? <Skeleton /> :
-        <>
       <Typography.Title style={{ fontSize: '1.5rem' }}>Normal Distribution for {poolName.replace('+', ' ')}</Typography.Title>
       <ResponsiveContainer width="100%" height={250}>
         <AreaChart data={newDataSet} >
@@ -63,8 +60,6 @@ const NormalDistribution = () => {
         </AreaChart>
       </ResponsiveContainer>
       < PoolSelector poolName={poolName} setPoolName={setPoolName} />
-      </>
-      }
     </Layout>
   )
 }

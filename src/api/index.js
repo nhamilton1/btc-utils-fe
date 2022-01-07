@@ -2,8 +2,7 @@ import axios from "axios"
 
 
 const poolURL = process.env.REACT_APP_BASE_URL + '/pool_block_counter'
-const historicURL = process.env.REACT_APP_BASE_URL + 'api/historic_prices'
-
+const historicURL = process.env.REACT_APP_BASE_URL + '/api/historic_prices'
 
 export const fetchPoolBlockCounterPerDay = async ({ queryKey }) => {
     // eslint-disable-next-line no-unused-vars

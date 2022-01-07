@@ -9,7 +9,7 @@ const CagrChart = props => {
 
     console.log(historicPriceRange)
 
-    const labels = historicPriceRange.map(x => x.btc_date)
+    const labels = historicPriceRange.map(x => x.date)
     const btc_price_data = historicPriceRange.map(x => x.btc_price)
     const gld_price_data = historicPriceRange.map(x => x.gld_price)
     const spy_price_data = historicPriceRange.map(x => x.spy_price)

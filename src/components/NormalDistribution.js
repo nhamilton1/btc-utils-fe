@@ -38,8 +38,6 @@ const NormalDistribution = () => {
   let removeDupes = [...new Set(points.map(x => Number(x.toFixed(0))))]
   // let data = removeDupes.map(x => ({ x, y: zScore(x), z: GetZPercent(zScore(x)) }));
   let newDataSet = removeDupes.map(x => ({ x, y: zScore(x), z: GetNewZPercent(zScore(x)) }));
-  
-  console.log(newDataSet)
 
   return (
     <Layout>

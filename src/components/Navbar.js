@@ -13,7 +13,7 @@ const Navbar = () => {
           <Menu theme="dark" mode="horizontal" openKeys={"sub1"}>
               <Menu.Item key="1">
                 <Link to="normal-distribution">
-                  Pool Normal Distribution Chart
+                  Pool Normal Distribution Graph
                 </Link>
               </Menu.Item>
               <Menu.Item key="2">

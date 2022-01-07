@@ -1,7 +1,6 @@
 import React from "react";
 import { Layout, Menu, Space } from "antd";
 import { Link } from "react-router-dom";
-import { AreaChartOutlined, HomeOutlined, RiseOutlined } from "@ant-design/icons";
 const { Header } = Layout;
 
 const Navbar = () => {
@@ -9,7 +8,6 @@ const Navbar = () => {
     <Layout className="layout">
       <Header className="header">
         <div className="logo" />
-        <Space direction="horizontal">
           <Menu theme="dark" mode="horizontal" openKeys={"sub1"}>
               <Menu.Item key="1">
                 <Link to="normal-distribution">
@@ -22,7 +20,6 @@ const Navbar = () => {
                 </Link>
               </Menu.Item>
             </Menu>
-        </Space>
       </Header>
     </Layout>
   );

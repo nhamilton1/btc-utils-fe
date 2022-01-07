@@ -1,8 +1,9 @@
 import React from 'react'
 // eslint-disable-next-line no-unused-vars
-import { Chart as ChartJS } from 'chart.js/auto'
-import { Line }            from 'react-chartjs-2'
+import { Line } from 'react-chartjs-2';
+import { Chart as ChartJS, LineController, LineElement, PointElement, LinearScale, Title } from 'chart.js';
 
+ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const CagrChart = props => {
     const { historicPriceRange } = props

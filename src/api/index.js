@@ -19,7 +19,6 @@ export const fetchPoolBlockCounterPerDay = async ({ queryKey }) => {
 export const fetchHistoricPriceRange = async ({ queryKey }) => {
     // eslint-disable-next-line no-unused-vars
     const [ _, date ] = queryKey
-    console.log(date)
     try {
         const res = await axios.get(historicURL, { params: { startDate: date[0], endDate: date[1] }})
         return res.data

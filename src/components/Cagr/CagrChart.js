@@ -7,9 +7,6 @@ ChartJS.register(LineController, LineElement, PointElement, LinearScale, Title);
 
 const CagrChart = props => {
     const { historicPriceRange } = props
-
-    console.log(historicPriceRange)
-
     const labels = historicPriceRange.map(x => x.date)
     const btc_price_data = historicPriceRange.map(x => x.btc_price)
     const gld_price_data = historicPriceRange.map(x => x.gld_price)

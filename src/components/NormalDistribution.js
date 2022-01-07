@@ -62,7 +62,7 @@ const NormalDistribution = () => {
 
   return (
     <Layout>
-      <ResponsiveContainer width="100%" height={250}>
+      <ResponsiveContainer width="100%" height={400}>
         <AreaChart data={newDataSet}>
           <Area
             dataKey="z"

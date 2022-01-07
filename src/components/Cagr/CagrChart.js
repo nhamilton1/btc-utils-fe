@@ -10,6 +10,7 @@ import {
   Legend,
 } from 'chart.js'
 import { Line } from 'react-chartjs-2'
+import Layout from "antd/lib/layout/layout";
 
 ChartJS.register(
   CategoryScale,
@@ -38,7 +39,7 @@ const CagrChart = (props) => {
     plugins: {
       title: {
         display: true,
-        text: "Title goes here",
+        text: "Cagr Chart",
       },
     },
     scales: {
@@ -85,7 +86,7 @@ const CagrChart = (props) => {
     ],
   };
 
-  return <Line data={data} options={options} />;
+  return <Layout><Line data={data} options={options} /></Layout>;
 };
 
 export default CagrChart;

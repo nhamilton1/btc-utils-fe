@@ -1,6 +1,5 @@
 import axios from "axios"
 
-
 const poolURL = process.env.REACT_APP_BASE_URL + '/pool_block_counter'
 const historicURL = process.env.REACT_APP_BASE_URL + '/api/historic_prices'
 

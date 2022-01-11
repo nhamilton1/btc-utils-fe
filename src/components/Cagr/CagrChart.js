@@ -8,8 +8,8 @@ import {
   Title,
   Tooltip,
   Legend,
-} from 'chart.js'
-import { Line } from 'react-chartjs-2'
+} from "chart.js";
+import { Line } from "react-chartjs-2";
 import Layout from "antd/lib/layout/layout";
 
 ChartJS.register(
@@ -20,7 +20,7 @@ ChartJS.register(
   Title,
   Tooltip,
   Legend
-)
+);
 
 const CagrChart = (props) => {
   const { historicPriceRange } = props;
@@ -30,8 +30,9 @@ const CagrChart = (props) => {
   const spy_price_data = historicPriceRange.map((x) => x.spy_price);
 
   const options = {
+    normalized: true,
     responsive: true,
-    maintainAspectRatio : false,
+    maintainAspectRatio: false,
     interaction: {
       mode: "index",
       intersect: false,
@@ -87,7 +88,11 @@ const CagrChart = (props) => {
     ],
   };
 
-  return <Layout><Line data={data} options={options} /></Layout>;
+  return (
+    <Layout>
+      <Line data={data} options={options} />
+    </Layout>
+  );
 };
 
 export default CagrChart;

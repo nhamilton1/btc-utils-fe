@@ -1,4 +1,4 @@
-import { Space, DatePicker, Col, Row } from "antd";
+import { Space, DatePicker, Col, Row, Descriptions, Typography } from "antd";
 import moment from "moment";
 import React from "react";
 import { useState } from "react";
@@ -8,6 +8,8 @@ import { fetchHistoricPriceRange } from "../../api";
 import Layout from "antd/lib/layout/layout";
 import CagrSkeleton from "./CagrSkeleton";
 import CagrValue from "./CagrValue";
+import Title from "antd/lib/typography/Title";
+import Paragraph from "antd/lib/typography/Paragraph";
 
 const { RangePicker } = DatePicker;
 const oneYearAgoToday = moment().subtract(1, "year").format("YYYY-MM-DD");
@@ -34,6 +36,7 @@ const Cagr = () => {
 
   const dateFormat = "YYYY-MM-DD";
 
+  //disables anythingbefore the start date and anything after the current date.
   const disabledDate = (current) => {
     let start = "2010-07-17";
     let end = Date.now();
@@ -55,11 +58,11 @@ const Cagr = () => {
   return (
     <Layout>
       <Row>
-        <Col span={19}>
+        <Col span={20}>
           <CagrChart historicPriceRange={historicPriceRange} />
         </Col>
         <Col
-          span={5}
+          span={4}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -78,6 +81,21 @@ const Cagr = () => {
           defaultValue={[moment(oneYearAgoToday), moment(todaysDate)]}
         />
       </Space>
+      <Typography
+        style={{
+          display: "flex",
+          flexFlow: "column",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Title style={{ fontSize: "1.2rem" }}>CAGR info</Title>
+        <Paragraph style={{ width: "50%" }}>
+          CAGR stands for Compound Annual Grow Rate. The CAGR is a mathematical
+          formula that provides a "smoothed" rate of return. It tells you what
+          an investment yields on an annually compounded basis.
+        </Paragraph>
+      </Typography>
     </Layout>
   );
 };

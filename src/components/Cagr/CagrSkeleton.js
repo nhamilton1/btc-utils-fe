@@ -4,7 +4,7 @@ import React from "react";
 
 const CagrSkeleton = () => {
   return (
-    <Layout >
+    <Layout>
       <Row>
         <Col span={19}>
           <Skeleton active paragraph={{ rows: 10 }} />
@@ -18,9 +18,9 @@ const CagrSkeleton = () => {
             flexFlow: "column wrap",
           }}
         >
-          <Skeleton.Button size="large" style={{margin: '1vh'}}/>
-          <Skeleton.Button size="large" style={{margin: '1vh'}}/>
-          <Skeleton.Button size="large" style={{margin: '1vh'}}/>
+          <Skeleton.Button size="large" style={{ margin: "1vh" }} />
+          <Skeleton.Button size="large" style={{ margin: "1vh" }} />
+          <Skeleton.Button size="large" style={{ margin: "1vh" }} />
         </Col>
       </Row>
     </Layout>

@@ -26,7 +26,7 @@ const CagrValue = (props) => {
 
   return (
     <>
-      <Card size="small">
+      <Card size="small" style={{ width: "14vw" }}>
         <Statistic
           title={`BTC CAGR`}
           value={`${btcCagrVal}%`}
@@ -35,7 +35,7 @@ const CagrValue = (props) => {
           prefix={btcCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
         />
       </Card>
-      <Card size="small">
+      <Card size="small" style={{ width: "14vw" }}>
         <Statistic
           title={`GLD CAGR`}
           value={`${gldCagrVal}%`}
@@ -44,7 +44,7 @@ const CagrValue = (props) => {
           prefix={gldCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
         />
       </Card>
-      <Card size="small">
+      <Card size="small" style={{ width: "14vw" }}>
         <Statistic
           title={`SPY CAGR`}
           value={`${spyCagrVal}%`}

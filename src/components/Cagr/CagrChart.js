@@ -8,6 +8,7 @@ import {
   Title,
   Tooltip,
   Legend,
+  Decimation,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import Layout from "antd/lib/layout/layout";
@@ -19,7 +20,8 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
+  Decimation
 );
 
 const CagrChart = (props) => {
@@ -29,16 +31,25 @@ const CagrChart = (props) => {
   const gld_price_data = historicPriceRange.map((x) => x.gld_price);
   const spy_price_data = historicPriceRange.map((x) => x.spy_price);
 
+  const decimation = {
+    enabled: true,
+    algorithm: "min-max",
+  };
+
   const options = {
+    tension: 1,
+    spanGaps: true,
+    animation: false,
     normalized: true,
     responsive: true,
     maintainAspectRatio: false,
     interaction: {
-      mode: "index",
       intersect: false,
+      mode: "nearest",
+      axis: "x",
     },
-    stacked: false,
     plugins: {
+      decimation: decimation,
       title: {
         display: true,
         text: "Cagr Chart",
@@ -54,36 +65,37 @@ const CagrChart = (props) => {
         type: "linear",
         display: true,
         position: "right",
-        grid: {
-          drawOnChartArea: false,
-        },
       },
     },
   };
 
   const data = {
+    type: "line",
     labels,
     datasets: [
       {
         label: "BTC",
         data: btc_price_data,
-        borderColor: "rgb(255,153,0, 0.1)",
+        borderColor: "rgb(255,153,0, 1)",
         backgroundColor: "rgba(255,153,0, 0.7)",
         yAxisID: "y",
+        pointRadius: 0,
       },
       {
         label: "GLD",
         data: gld_price_data,
-        borderColor: "rgb(53, 162, 235, 0.1)",
+        borderColor: "rgb(53, 162, 235, 1)",
         backgroundColor: "rgba(53, 162, 235, 0.7)",
         yAxisID: "y1",
+        pointRadius: 0,
       },
       {
         label: "SPY",
         data: spy_price_data,
-        borderColor: "rgb(0,128,0, 0.1)",
+        borderColor: "rgb(0,128,0, 1)",
         backgroundColor: "rgb(0,128,0, 0.7)",
         yAxisID: "y1",
+        pointRadius: 0,
       },
     ],
   };

@@ -1,4 +1,4 @@
-import { Space, DatePicker, Col, Row, Descriptions, Typography } from "antd";
+import { Space, DatePicker, Col, Row, Typography } from "antd";
 import moment from "moment";
 import React from "react";
 import { useState } from "react";

@@ -14,17 +14,13 @@ const CagrValue = (props) => {
   let btcBeginningVal = historicPriceRange[0].btc_price;
   const btcCagrVal = cagrFormula(btcEndVal, btcBeginningVal, numOfYears);
 
-  let x = 1;
   //gld cagr values
-  let gldEndVal = historicPriceRange[historicPriceRange.length - x].gld_price;
-  while (historicPriceRange[historicPriceRange.length - x].gld_price === null) {
-    gldEndVal = historicPriceRange[historicPriceRange.length - ++x].gld_price;
-  }
+  let gldEndVal = historicPriceRange[historicPriceRange.length - 1].gld_price;
   let gldBeginningVal = historicPriceRange[0].gld_price;
   const gldCagrVal = cagrFormula(gldEndVal, gldBeginningVal, numOfYears);
 
   //spy cagr values
-  let spyEndVal = historicPriceRange[historicPriceRange.length - x].spy_price;
+  let spyEndVal = historicPriceRange[historicPriceRange.length - 1].spy_price;
   let spyBeginningVal = historicPriceRange[0].spy_price;
   const spyCagrVal = cagrFormula(spyEndVal, spyBeginningVal, numOfYears);
 

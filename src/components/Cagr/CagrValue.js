@@ -5,6 +5,8 @@ import React from "react";
 const CagrValue = (props) => {
   const { historicPriceRange } = props;
 
+  console.log(historicPriceRange);
+
   const cagrFormula = (endVal, beginningVal, numOfYears) =>
     ((Math.pow(endVal / beginningVal, 1 / numOfYears) - 1) * 100).toFixed(2);
 

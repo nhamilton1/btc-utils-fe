@@ -5,22 +5,19 @@ import Cagr from "./components/Cagr/Cagr";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
-
 const App = () => {
-
-  return(
+  return (
     <div className="App">
-      <Navbar/>
+      <Navbar />
       <Layout>
-          <Routes>
-            <Route path="/" element={<NormalDistribution/>}/>
-            <Route path="/cagr" element={<Cagr/>}/>
-            <Route path="/normal-distribution" element={<NormalDistribution/>}/>
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Cagr />} />
+          <Route path="/cagr" element={<Cagr />} />
+          <Route path="/normal-distribution" element={<NormalDistribution />} />
+        </Routes>
       </Layout>
     </div>
-  )
+  );
 };
 
 export default App;
-

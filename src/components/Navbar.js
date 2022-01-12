@@ -1,5 +1,5 @@
 import React from "react";
-import { Layout, Menu, Space } from "antd";
+import { Layout, Menu } from "antd";
 import { Link } from "react-router-dom";
 const { Header } = Layout;
 
@@ -8,18 +8,14 @@ const Navbar = () => {
     <Layout className="layout">
       <Header className="header">
         <div className="logo" />
-          <Menu theme="dark" mode="horizontal" openKeys={"sub1"}>
-              <Menu.Item key="1">
-                <Link to="normal-distribution">
-                  Pool Normal Distribution Graph
-                </Link>
-              </Menu.Item>
-              <Menu.Item key="2">
-                <Link to="/cagr">
-                  CAGR Graph
-                </Link>
-              </Menu.Item>
-            </Menu>
+        <Menu theme="dark" mode="horizontal" openKeys={"sub1"}>
+          <Menu.Item key="1">
+            <Link to="/cagr">CAGR Graph</Link>
+          </Menu.Item>
+          <Menu.Item key="2">
+            <Link to="normal-distribution">Pool Normal Distribution Graph</Link>
+          </Menu.Item>
+        </Menu>
       </Header>
     </Layout>
   );

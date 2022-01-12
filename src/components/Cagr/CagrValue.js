@@ -2,6 +2,13 @@ import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Card, Statistic } from "antd";
 import React from "react";
 
+const gridStyle = {
+  width: '100%',
+  textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column'
+};
+
 const CagrValue = (props) => {
   const { historicPriceRange } = props;
 
@@ -26,32 +33,46 @@ const CagrValue = (props) => {
 
   return (
     <>
-      <Card size="small" style={{ width: "14vw" }}>
-        <Statistic
-          title={`BTC CAGR`}
-          value={`${btcCagrVal}%`}
-          precision={2}
-          valueStyle={btcCagrVal > 0 ? { color: "#3f8600" } : { color: "red" }}
-          prefix={btcCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-        />
-      </Card>
-      <Card size="small" style={{ width: "14vw" }}>
-        <Statistic
-          title={`GLD CAGR`}
-          value={`${gldCagrVal}%`}
-          precision={2}
-          valueStyle={gldCagrVal > 0 ? { color: "#3f8600" } : { color: "red" }}
-          prefix={gldCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-        />
-      </Card>
-      <Card size="small" style={{ width: "14vw" }}>
-        <Statistic
-          title={`SPY CAGR`}
-          value={`${spyCagrVal}%`}
-          precision={2}
-          valueStyle={spyCagrVal > 0 ? { color: "#3f8600" } : { color: "red" }}
-          prefix={spyCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />}
-        />
+      <Card>
+        <Card.Grid size="small" style={gridStyle}>
+          <Statistic
+            title={`BTC CAGR`}
+            value={`${btcCagrVal}%`}
+            precision={2}
+            valueStyle={
+              btcCagrVal > 0 ? { color: "#3f8600" } : { color: "red" }
+            }
+            prefix={
+              btcCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />
+            }
+          />
+        </Card.Grid>
+        <Card.Grid size="small" style={gridStyle}>
+          <Statistic
+            title={`GLD CAGR`}
+            value={`${gldCagrVal}%`}
+            precision={2}
+            valueStyle={
+              gldCagrVal > 0 ? { color: "#3f8600" } : { color: "red" }
+            }
+            prefix={
+              gldCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />
+            }
+          />
+        </Card.Grid>
+        <Card.Grid size="small" style={gridStyle}>
+          <Statistic
+            title={`SPY CAGR`}
+            value={`${spyCagrVal}%`}
+            precision={2}
+            valueStyle={
+              spyCagrVal > 0 ? { color: "#3f8600" } : { color: "red" }
+            }
+            prefix={
+              spyCagrVal > 0 ? <ArrowUpOutlined /> : <ArrowDownOutlined />
+            }
+          />
+        </Card.Grid>
       </Card>
     </>
   );

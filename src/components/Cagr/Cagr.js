@@ -79,11 +79,11 @@ const Cagr = () => {
   return (
     <Layout>
       <Row>
-        <Col span={20}>
+        <Col span={21}>
           <CagrChart historicPriceRange={historicPriceRange} />
         </Col>
         <Col
-          span={4}
+          span={3}
           style={{
             display: "flex",
             justifyContent: "center",

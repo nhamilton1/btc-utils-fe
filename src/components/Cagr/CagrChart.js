@@ -26,11 +26,13 @@ ChartJS.register(
 
 const CagrChart = (props) => {
   const { historicPriceRange } = props;
+  // formatting data
   const labels = historicPriceRange.map((x) => x.date);
   const btc_price_data = historicPriceRange.map((x) => x.btc_price);
   const gld_price_data = historicPriceRange.map((x) => x.gld_price);
   const spy_price_data = historicPriceRange.map((x) => x.spy_price);
 
+  // not even sure if this is doing anyhting
   const decimation = {
     enabled: true,
     algorithm: "min-max",

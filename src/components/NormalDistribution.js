@@ -77,7 +77,7 @@ const NormalDistribution = () => {
           <CartesianGrid opacity={0.1} vertical={false} />
         </AreaChart>
       </ResponsiveContainer>
-
+      <PoolSelector poolName={poolName} setPoolName={setPoolName} />
       <Typography
         style={{
           display: "flex",
@@ -98,7 +98,6 @@ const NormalDistribution = () => {
           blocks mined by the pool per day.
         </Paragraph>
       </Typography>
-      <PoolSelector poolName={poolName} setPoolName={setPoolName} />
     </Layout>
   );
 };

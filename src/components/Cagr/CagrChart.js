@@ -32,7 +32,7 @@ const CagrChart = (props) => {
   const gld_price_data = historicPriceRange.map((x) => x.gld_price);
   const spy_price_data = historicPriceRange.map((x) => x.spy_price);
 
-  // not even sure if this is doing anyhting
+  // is this even doing anything?
   const decimation = {
     enabled: true,
     algorithm: "min-max",

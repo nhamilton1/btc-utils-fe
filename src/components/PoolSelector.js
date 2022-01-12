@@ -2,6 +2,7 @@ import { Select } from "antd";
 import React from "react";
 
 const PoolSelector = (props) => {
+  const { poolName, setPoolName } = props;
   const pools = [
     "SlushPool",
     "F2Pool",
@@ -15,11 +16,10 @@ const PoolSelector = (props) => {
     "MARA Pool",
     "SBI Crypto",
   ];
-  const { poolName, setPoolName } = props;
   return (
     <Select
       defaultValue={poolName}
-      style={{ width: 120, color: "white" }}
+      style={{ width: 120, color: "white", marginLeft:'3.5%'}}
       onChange={(e) => setPoolName(e)}
     >
       {pools.map((poolName, idx) => (

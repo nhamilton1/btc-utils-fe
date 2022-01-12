@@ -19,7 +19,7 @@ const PoolSelector = (props) => {
   return (
     <Select
       defaultValue={poolName}
-      style={{ width: 120, color: "white", marginLeft:'3.5%'}}
+      style={{ width: 120, color: "white", marginLeft: "3.5%" }}
       onChange={(e) => setPoolName(e)}
     >
       {pools.map((poolName, idx) => (

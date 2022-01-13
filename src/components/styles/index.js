@@ -12,3 +12,10 @@ export const toolTipstyleCND = {
   whiteSpace: "nowrap",
   darkreader: "inline",
 };
+
+export const gridStyle = {
+  width: '100%',
+  textAlign: 'center',
+  display: 'flex',
+  flexDirection: 'column',
+};

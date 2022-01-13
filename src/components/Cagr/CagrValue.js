@@ -1,13 +1,7 @@
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Card, Statistic } from "antd";
 import React from "react";
-
-const gridStyle = {
-  width: '100%',
-  textAlign: 'center',
-  display: 'flex',
-  flexDirection: 'column'
-};
+import { gridStyle } from "../styles";
 
 const CagrValue = (props) => {
   const { historicPriceRange } = props;

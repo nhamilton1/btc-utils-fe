@@ -2,17 +2,15 @@ Front end for the ndp-be. This shows a CAGR graph and a normal distrubution curv
 
 ## Developer Instructions
 
-1. Clone the repo repository to your machine. DO NOT FORK.
+1. Clone the repo repository to your machine.
 2. Create an environment file (.env) based on the and populate the environment variables with your own.
 3. Run: `npm install` to download all dependencies.
 4. Run: `npm start` to start your local development server.
 
 ### Key Features
 
-- shows average hash score and amount of blocks found by the pool for the day
-- Daily rewards graph
-- table of miners, listing hash score, 5min, 60min, 24h hash, and status
-- Normal Distribution graph
+- Normal distribution graph for majority of the major bitcoin mining pools
+- CAGR graph for bitcoin, compairing to GLD and SPY market values
 
 ## Other Scripts
 

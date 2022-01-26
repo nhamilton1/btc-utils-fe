@@ -39,7 +39,6 @@ const CagrChart = (props) => {
   };
 
   const options = {
-    tension: 1,
     spanGaps: true,
     animation: false,
     normalized: true,

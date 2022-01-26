@@ -89,6 +89,7 @@ const Cagr = () => {
             justifyContent: "center",
             alignItems: "center",
             flexFlow: "column wrap",
+            padding: '1rem'
           }}
         >
           <CagrValue historicPriceRange={historicPriceRange} />

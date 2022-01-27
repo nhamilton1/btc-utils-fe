@@ -34,30 +34,9 @@ const Cagr = () => {
     return <CagrSkeleton />;
   }
 
-  // fixes bug where if selected the start date on a weekend, sat or sunday, the value would be null
-  historicPriceRange.map((n, idx) => {
-    let j = idx + idx;
-    if (
-      (historicPriceRange[idx].spy_price === null &&
-        historicPriceRange[j].spy_price !== null) ||
-      (historicPriceRange[idx].gld_price === null &&
-        historicPriceRange[idx].gld_price === null)
-    ) {
-      historicPriceRange[idx].spy_price = historicPriceRange[j].spy_price;
-      historicPriceRange[idx].gld_price = historicPriceRange[j].gld_price;
-      j = idx + 1;
-      idx = 0;
-    } else {
-      j++;
-    }
-    historicPriceRange[0].spy_price = historicPriceRange[1].spy_price;
-    historicPriceRange[0].gld_price = historicPriceRange[1].gld_price;
-    return n;
-  });
-
   const dateFormat = "YYYY-MM-DD";
 
-  //disables anythingbefore the start date and anything after the current date.
+  //disables anything before the start date and anything after the current date.
   const disabledDate = (current) => {
     let start = "2010-07-17";
     let end = Date.now();
@@ -77,25 +56,21 @@ const Cagr = () => {
   };
 
   return (
-    <Layout>
+    <Layout style={{ display: "flex" }}>
+      <CagrValue historicPriceRange={historicPriceRange} />
       <Row>
-        <Col span={21}>
+        <Col span={24}>
           <CagrChart historicPriceRange={historicPriceRange} />
         </Col>
-        <Col
-          span={3}
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexFlow: "column wrap",
-            padding: '1rem'
-          }}
-        >
-          <CagrValue historicPriceRange={historicPriceRange} />
-        </Col>
       </Row>
-      <Space direction="vertical" size={12}>
+      <Space
+        direction="vertical"
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <RangePicker
           format={dateFormat}
           disabledDate={disabledDate}

@@ -102,8 +102,8 @@ const CagrChart = (props) => {
   };
 
   return (
-    <Layout>
-      <Line data={data} options={options} />
+    <Layout style={{width: '100%', height: '69vh'}}>
+      <Line data={data} options={options}/>
     </Layout>
   );
 };

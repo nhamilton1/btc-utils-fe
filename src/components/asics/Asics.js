@@ -44,6 +44,12 @@ const Asics = () => {
     }
   );
 
+  if (btcPriceLoading) {
+    return <div>Loading Data...</div>;
+  }
+  if (hashRateStatsLoading) {
+    return <div>Loading Data...</div>;
+  }
   if (isLoading) {
     return <div>Loading Data...</div>;
   }

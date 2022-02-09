@@ -1,10 +1,45 @@
-import { Footer } from 'antd/lib/layout/layout'
-import React from 'react'
+import { GithubOutlined, TwitterOutlined } from "@ant-design/icons";
+import { Button, Col, Row, Typography } from "antd";
+import { Footer } from "antd/lib/layout/layout";
+import React from "react";
 
 const FooterComp = () => {
   return (
-    <Footer>FooterComp</Footer>
-  )
-}
+    <>
+      <Row justify="center">
+        <Col>
+          <Button
+            type="text"
+            href="https://github.com/nhamilton1"
+            icon={
+              <GithubOutlined
+                className="githubIcon"
+                style={{ fontSize: "2rem" }}
+              />
+            }
+            target={"_blank"}
+            style={{ paddingRight: "25%" }}
+          />
 
-export default FooterComp
+          <Button
+            type="text"
+            href="https://twitter.com/AdrenaIine"
+            icon={
+              <TwitterOutlined
+                style={{ fontSize: "2rem" }}
+                href="https://twitter.com/AdrenaIine"
+              />
+            }
+            target={"_blank"}
+            style={{ paddingLeft: "25%" }}
+          />
+
+          <Typography>Made by Nick</Typography>
+        </Col>
+        <Col></Col>
+      </Row>
+    </>
+  );
+};
+
+export default FooterComp;

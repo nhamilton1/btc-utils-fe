@@ -1,4 +1,14 @@
-import { Table, InputNumber, Divider, List, Row, Col } from "antd";
+import { TwitterOutlined } from "@ant-design/icons";
+import {
+  Table,
+  InputNumber,
+  Divider,
+  List,
+  Row,
+  Col,
+  Typography,
+  Button,
+} from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import moment from "moment";
 import React, { useState } from "react";
@@ -8,6 +18,7 @@ import {
   fetchCurrentBTCPrice,
   fetchHashRateStats,
 } from "../../api";
+import AsicSkeleton from "./AsicSkeleton";
 
 const Asics = () => {
   const [kWhPrice, setkWhPrice] = useState(
@@ -41,16 +52,6 @@ const Asics = () => {
       staleTime: Infinity,
     }
   );
-
-  if (btcPriceLoading) {
-    return <div>Loading Data...</div>;
-  }
-  if (hashRateStatsLoading) {
-    return <div>Loading Data...</div>;
-  }
-  if (isLoading) {
-    return <div>Loading Data...</div>;
-  }
 
   let currentBTCPrice = btcPrice?.price;
   let currentHash = hashRateStats?.current_hashrate;
@@ -100,6 +101,10 @@ const Asics = () => {
       title: "ASIC BTC Price",
       dataIndex: "asicBTCPrice",
       key: "asicBTCPrice",
+      sorter: {
+        compare: (a, b) => a.asicBTCPrice - b.asicBTCPrice,
+        multiple: 2,
+      },
     },
     {
       title: "Value ($/TH)",
@@ -115,6 +120,10 @@ const Asics = () => {
       title: "Denver Derivative",
       dataIndex: "denverDerivative",
       key: "denverDerivative",
+      sorter: {
+        compare: (a, b) => a.denverDerivative - b.denverDerivative,
+        multiple: 1,
+      },
     },
     {
       title: "BTC Per Month",
@@ -148,7 +157,7 @@ const Asics = () => {
     localStorage.setItem("kWhPrice", value);
   };
 
-  const formattingAsicData = asicData.map((a, idx) => {
+  const formattingAsicData = asicData?.map((a, idx) => {
     let asicBTCPrice =
       Math.round(1000000 * (a.price / currentBTCPrice)) / 1000000;
     let value = Math.round(a.price / a.th);
@@ -188,6 +197,16 @@ const Asics = () => {
     return data;
   });
 
+  if (btcPriceLoading) {
+    return <AsicSkeleton columns={columns} />;
+  }
+  if (hashRateStatsLoading) {
+    return <div>Loading Data...</div>;
+  }
+  if (isLoading) {
+    return <div>Loading Data...</div>;
+  }
+
   const denvD = [
     ">50 = If your power is less than ~$0.035 OR you're going to run the ASIC for five-plus years.",
     "<50 = If your power is less than ~$0.055 OR you're going to run the ASIC for four-plus years.",
@@ -215,7 +234,7 @@ const Asics = () => {
           defaultValue="0.12"
           onChange={onChangekWhPrice}
           size="large"
-          max={1}
+          max={2}
           min={0.01}
           step={0.01}
           maxLength={6}
@@ -254,6 +273,27 @@ const Asics = () => {
             </Col>
           </Row>
         </Content>
+
+            <Typography>
+              Credit to Joe Rodgers for the idea.
+            </Typography>
+
+            <Typography>
+              Joe's Twitter: 
+              <Button
+              type="text"
+              href="https://twitter.com/_joerodgers"
+              icon={
+                <TwitterOutlined
+                  style={{ fontSize: "1rem" }}
+                  className="twitterIcon"
+                />
+              }
+              target={"_blank"}
+            />
+            </Typography>
+
+
       </Footer>
     </Layout>
   );

@@ -1,4 +1,4 @@
-import { Table, InputNumber } from "antd";
+import { Table, InputNumber, Divider, List } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import Paragraph from "antd/lib/typography/Paragraph";
 import Title from "antd/lib/typography/Title";
@@ -167,7 +167,7 @@ const Asics = () => {
 
     const data = {
       key: idx,
-      date: moment(a.date).format("MMM Do YY"),
+      date: moment(new Date(a.date)).format("MMM Do YY"),
       efficiency: a.efficiency,
       model: a.model,
       price: a.price,
@@ -190,12 +190,29 @@ const Asics = () => {
     return data;
   });
 
+  const denvD = [
+    ">50 = If your power is less than ~$0.035 OR you're going to run the ASIC for five-plus years.",
+    "<50 = If your power is less than ~$0.055 OR you're going to run the ASIC for four-plus years.",
+    "<40 = If your power is less than ~$0.075 OR you're going to run the ASIC for three-plus years.",
+    "<30 = If your power is less than ~$0.125 OR you're going to run the ASIC for three years.",
+    "<20 = If your power is less than ~$0.15 OR you're going to run the ASIC for two-plus years.",
+    "<15 = Borrow to buy all the hardware (just kidding but not really).",
+  ];
+
+  const terms = [
+    "Watts/Th = An ASIC's total watt consumption divided by its nominal Th/s rating.",
+    "$/Th = The total cost of an ASIC divided by its nominal Th/s rating.",
+    "WattDollar = The product of an ASIC's watts/Th multiplied by $/Th.",
+    "Hash price = USD value of 1 Th/s over the course of 24 hours.",
+    "Elongated hash price = USD value of 1 Th/s over the course of 50,000 blocks.",
+  ];
+
   return (
     <Layout>
       <Header>
         Insert your kWh Price:
         <InputNumber
-          style={{ width: 80}}
+          style={{ width: 80 }}
           placeholder="Your kWh Price"
           defaultValue="0.12"
           onChange={onChangekWhPrice}
@@ -208,41 +225,38 @@ const Asics = () => {
         />
       </Header>
       <Content>
-        <Table dataSource={formattingAsicData} columns={columns} scroll={{y: '50vh'}}/>
+        <Table
+          dataSource={formattingAsicData}
+          columns={columns}
+          scroll={{ y: "50vh" }}
+          pagination={{ pageSize: 50 }}
+        />
       </Content>
-      <Footer style={{display: 'flex', flexFlow: 'column wrap' ,alignItems: 'center', justifyContent: 'center'}}>
-        <Title style={{textAlign:'center'}}>Asic Pricing Chart</Title>
-        <Title level={5}>Some terms to define:</Title>
-        <Paragraph style={{width: '30%'}}>
-        Watts/Th = An ASIC's total watt consumption divided by its nominal Th/s rating.<br />
-        $/Th = The total cost of an ASIC divided by its nominal Th/s rating.<br />
-        WattDollar = The product of an ASIC's watts/Th multiplied by $/Th.<br />
-        Hash price = USD value of 1 Th/s over the course of 24 hours.<br />
-        Elongated hash price = USD value of 1 Th/s over the course of 50,000 blocks.<br />
-        </Paragraph>
-        <Title level={5}>
-          Denver's Derivative (DD) = WattDollar/Elongated hash price =
-        </Title>
-        <Paragraph>
-          {">"}50 = If your power is less than ~$0.035 OR you're going to run
-          the ASIC for five-plus years.
-          <br />
-          {"<"}50 = If your power is less than ~$0.055 OR you're going to run
-          the ASIC for four-plus years.
-          <br />
-          {"<"}40 = If your power is less than ~$0.075 OR you're going to run
-          the ASIC for three-plus years.
-          <br />
-          {"<"}30 = If your power is less than ~$0.125 OR you're going to run
-          the ASIC for three years.
-          <br />
-          {"<"}20 = If your power is less than ~$0.15 OR you're going to run the
-          ASIC for two-plus years.
-          <br />
-          {"<"}15 = Borrow to buy all the hardware (just kidding but not
-          really).
-          <br />
-        </Paragraph>
+      <Footer style={{ paddingTop: 0, width: "100%" }}>
+        <Content style={{ display: "flex", justifyContent: "space-around" }}>
+          
+          <Content>
+            <Divider orientation="left">Definitions</Divider>
+            <List
+              size="small"
+              bordered
+              dataSource={terms}
+              renderItem={(item) => <List.Item>{item}</List.Item>}
+            />
+          </Content>
+
+          <Content>
+            <Divider orientation="left">
+              Denver’s Derivative (DD) = WattDollar/Elongated hash price =
+            </Divider>
+            <List
+              size="small"
+              bordered
+              dataSource={denvD}
+              renderItem={(item) => <List.Item>{item}</List.Item>}
+            />
+          </Content>
+        </Content>
       </Footer>
     </Layout>
   );

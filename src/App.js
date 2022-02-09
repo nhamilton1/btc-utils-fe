@@ -4,6 +4,7 @@ import NormalDistribution from "./components/NormalDistribution";
 import Cagr from "./components/Cagr/Cagr";
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import Asics from "./components/asics/Asics";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" element={<Cagr />} />
           <Route path="/cagr" element={<Cagr />} />
           <Route path="/normal-distribution" element={<NormalDistribution />} />
+          <Route path="/asics" element={<Asics />} />
         </Routes>
       </Layout>
     </div>

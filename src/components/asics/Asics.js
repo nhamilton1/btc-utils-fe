@@ -1,7 +1,5 @@
 import { Table, InputNumber, Divider, List } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
-import Paragraph from "antd/lib/typography/Paragraph";
-import Title from "antd/lib/typography/Title";
 import moment from "moment";
 import React, { useState } from "react";
 import { useQuery } from "react-query";

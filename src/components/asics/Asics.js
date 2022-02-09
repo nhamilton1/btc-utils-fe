@@ -1,4 +1,4 @@
-import { Table, InputNumber, Divider, List } from "antd";
+import { Table, InputNumber, Divider, List, Row, Col } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import moment from "moment";
 import React, { useState } from "react";
@@ -226,34 +226,33 @@ const Asics = () => {
         <Table
           dataSource={formattingAsicData}
           columns={columns}
-          scroll={{ y: "50vh" }}
-
+          scroll={{ x: "100%" }}
+          style={{ width: "100%" }}
         />
       </Content>
       <Footer style={{ paddingTop: 0, width: "100%" }}>
-        <Content style={{ display: "flex", justifyContent: "space-around" }}>
-          
-          <Content>
-            <Divider orientation="left">Definitions</Divider>
-            <List
-              size="small"
-              bordered
-              dataSource={terms}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
-            />
-          </Content>
-
-          <Content>
-            <Divider orientation="left">
-              Denver’s Derivative (DD) = WattDollar/Elongated hash price =
-            </Divider>
-            <List
-              size="small"
-              bordered
-              dataSource={denvD}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
-            />
-          </Content>
+        <Content>
+          <Row gutter={100} justify="center">
+            <Col span={10}>
+              <Divider orientation="left">Definitions</Divider>
+              <List
+                size="small"
+                bordered
+                dataSource={terms}
+                renderItem={(item) => <List.Item>{item}</List.Item>}
+              />
+            </Col>
+            <Col span={10}>
+              <Divider orientation="left">Denver's Derivative</Divider>
+              <List
+                header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="
+                size="small"
+                bordered
+                dataSource={denvD}
+                renderItem={(item) => <List.Item>{item}</List.Item>}
+              />
+            </Col>
+          </Row>
         </Content>
       </Footer>
     </Layout>

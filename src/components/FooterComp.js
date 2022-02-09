@@ -26,7 +26,7 @@ const FooterComp = () => {
             icon={
               <TwitterOutlined
                 style={{ fontSize: "2rem" }}
-                href="https://twitter.com/AdrenaIine"
+                className='myTwitterIcon'
               />
             }
             target={"_blank"}

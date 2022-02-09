@@ -1,4 +1,14 @@
-import { Table, InputNumber, Divider, List, Row, Col } from "antd";
+import { TwitterOutlined } from "@ant-design/icons";
+import {
+  Table,
+  InputNumber,
+  Divider,
+  List,
+  Row,
+  Col,
+  Typography,
+  Button,
+} from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import moment from "moment";
 import React, { useState } from "react";
@@ -91,6 +101,10 @@ const Asics = () => {
       title: "ASIC BTC Price",
       dataIndex: "asicBTCPrice",
       key: "asicBTCPrice",
+      sorter: {
+        compare: (a, b) => a.asicBTCPrice - b.asicBTCPrice,
+        multiple: 2,
+      },
     },
     {
       title: "Value ($/TH)",
@@ -109,7 +123,7 @@ const Asics = () => {
       sorter: {
         compare: (a, b) => a.denverDerivative - b.denverDerivative,
         multiple: 1,
-      }
+      },
     },
     {
       title: "BTC Per Month",
@@ -184,7 +198,7 @@ const Asics = () => {
   });
 
   if (btcPriceLoading) {
-    return <AsicSkeleton columns={columns}/>;
+    return <AsicSkeleton columns={columns} />;
   }
   if (hashRateStatsLoading) {
     return <div>Loading Data...</div>;
@@ -192,7 +206,6 @@ const Asics = () => {
   if (isLoading) {
     return <div>Loading Data...</div>;
   }
-
 
   const denvD = [
     ">50 = If your power is less than ~$0.035 OR you're going to run the ASIC for five-plus years.",
@@ -260,6 +273,27 @@ const Asics = () => {
             </Col>
           </Row>
         </Content>
+
+            <Typography>
+              Credit to Joe Rodgers for the idea.
+            </Typography>
+
+            <Typography>
+              Joe's Twitter: 
+              <Button
+              type="text"
+              href="https://twitter.com/_joerodgers"
+              icon={
+                <TwitterOutlined
+                  style={{ fontSize: "1rem" }}
+                  className="twitterIcon"
+                />
+              }
+              target={"_blank"}
+            />
+            </Typography>
+
+
       </Footer>
     </Layout>
   );

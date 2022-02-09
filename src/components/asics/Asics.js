@@ -102,7 +102,7 @@ const Asics = () => {
       dataIndex: "asicBTCPrice",
       key: "asicBTCPrice",
       sorter: {
-        compare: (a, b) => a.asicBTCPrice - b.asicBTCPrice,
+        compare: (a, b) => b.asicBTCPrice - a.asicBTCPrice,
         multiple: 2,
       },
     },
@@ -121,7 +121,7 @@ const Asics = () => {
       dataIndex: "denverDerivative",
       key: "denverDerivative",
       sorter: {
-        compare: (a, b) => a.denverDerivative - b.denverDerivative,
+        compare: (a, b) => b.denverDerivative - a.denverDerivative,
         multiple: 1,
       },
     },

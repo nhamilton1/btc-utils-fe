@@ -115,6 +115,10 @@ const Asics = () => {
       title: "Denver Derivative",
       dataIndex: "denverDerivative",
       key: "denverDerivative",
+      sorter: {
+        compare: (a, b) => a.denverDerivative - b.denverDerivative,
+        multiple: 1,
+      }
     },
     {
       title: "BTC Per Month",

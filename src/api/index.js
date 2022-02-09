@@ -2,7 +2,7 @@ import axios from "axios";
 
 const poolURL = process.env.REACT_APP_BASE_URL + "/api/nd/pool_block_counter";
 const historicURL = process.env.REACT_APP_BASE_URL + "/api/historic_prices";
-const asicURL = "https://nd-deploy.herokuapp.com/api/asics";
+const asicURL = "https://btc-utils-be.herokuapp.com/api/asics";
 const btcPriceURL = "https://insights.braiins.com/api/v1.0/price-stats";
 const hashRateStats = "https://insights.braiins.com/api/v1.0/hash-rate-stats";
 

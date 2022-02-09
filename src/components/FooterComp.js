@@ -1,6 +1,5 @@
 import { GithubOutlined, TwitterOutlined } from "@ant-design/icons";
 import { Button, Col, Row, Typography } from "antd";
-import { Footer } from "antd/lib/layout/layout";
 import React from "react";
 
 const FooterComp = () => {

@@ -146,7 +146,6 @@ const Asics = () => {
   ];
 
   const onChangekWhPrice = (value) => {
-    console.log("changed", value);
     setkWhPrice(value);
     localStorage.setItem("kWhPrice", value);
   };
@@ -191,7 +190,6 @@ const Asics = () => {
     return data;
   });
 
-  console.log(formattingAsicData);
   return (
     <Layout>
       <Header>

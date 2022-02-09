@@ -227,7 +227,7 @@ const Asics = () => {
           dataSource={formattingAsicData}
           columns={columns}
           scroll={{ y: "50vh" }}
-          pagination={{ pageSize: 50 }}
+
         />
       </Content>
       <Footer style={{ paddingTop: 0, width: "100%" }}>

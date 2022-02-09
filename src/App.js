@@ -12,7 +12,7 @@ const App = () => {
       <Navbar />
       <Layout>
         <Routes>
-          <Route path="/" element={<Cagr />} />
+          <Route path="/" element={<Asics />} />
           <Route path="/cagr" element={<Cagr />} />
           <Route path="/normal-distribution" element={<NormalDistribution />} />
           <Route path="/asics" element={<Asics />} />

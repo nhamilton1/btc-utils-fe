@@ -7,7 +7,7 @@ const { Header } = Layout;
 
 const Navbar = () => {
   return (
-    <MediaQuery maxWidth={1224}>
+    <MediaQuery maxWidth={550}>
       {(matches) =>
         matches ? (
           <Menu theme="dark" mode="vertical" openKeys={"sub1"}>

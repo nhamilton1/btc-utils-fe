@@ -198,6 +198,7 @@ const Asics = () => {
     return data;
   });
 
+  console.log(formattingAsicData);
   if (btcPriceLoading) {
     return <AsicSkeleton columns={columns} />;
   }
@@ -207,6 +208,14 @@ const Asics = () => {
   if (isLoading) {
     return <div>Loading Data...</div>;
   }
+
+  const hiddenVals = [
+    `Current BTC price: ${currentBTCPrice}`,
+    `Current Network Hashrate: ${currentHash} EH/s`,
+    `Current Hash Price: $${currentHashPrice}`,
+    `Elongated Hash Price: $${elongatedHashPrice}`,
+    `Current Hash Value: ${currentHashValue} sats`,
+  ];
 
   const denvD = [
     ">50 = If your power is less than ~$0.035 OR you're going to run the ASIC for five-plus years.",
@@ -256,6 +265,15 @@ const Asics = () => {
             {(matches) =>
               matches ? (
                 <>
+                  <Divider orientation="left">Hidden Values</Divider>
+                  <List
+                    header="Values that are used in the table, but are not displayed"
+                    size="small"
+                    bordered
+                    dataSource={hiddenVals}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                  />
+
                   <Divider orientation="left">Definitions</Divider>
                   <List
                     size="small"
@@ -275,7 +293,17 @@ const Asics = () => {
                 </>
               ) : (
                 <Row gutter={100} justify="center">
-                  <Col span={10}>
+                  <Col span={8}>
+                    <Divider orientation="left">Hidden Values</Divider>
+                    <List
+                      header="Values that are used in the table, but are not displayed"
+                      size="small"
+                      bordered
+                      dataSource={hiddenVals}
+                      renderItem={(item) => <List.Item>{item}</List.Item>}
+                    />
+                  </Col>
+                  <Col span={8}>
                     <Divider orientation="left">Definitions</Divider>
                     <List
                       size="small"
@@ -284,7 +312,7 @@ const Asics = () => {
                       renderItem={(item) => <List.Item>{item}</List.Item>}
                     />
                   </Col>
-                  <Col span={10}>
+                  <Col span={8}>
                     <Divider orientation="left">Denver's Derivative</Divider>
                     <List
                       header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="

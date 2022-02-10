@@ -19,6 +19,7 @@ import {
   fetchHashRateStats,
 } from "../../api";
 import AsicSkeleton from "./AsicSkeleton";
+import MediaQuery from "react-responsive";
 
 const Asics = () => {
   const [kWhPrice, setkWhPrice] = useState(
@@ -251,49 +252,70 @@ const Asics = () => {
       </Content>
       <Footer style={{ paddingTop: 0, width: "100%" }}>
         <Content>
-          <Row gutter={100} justify="center">
-            <Col span={10}>
-              <Divider orientation="left">Definitions</Divider>
-              <List
-                size="small"
-                bordered
-                dataSource={terms}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Col>
-            <Col span={10}>
-              <Divider orientation="left">Denver's Derivative</Divider>
-              <List
-                header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="
-                size="small"
-                bordered
-                dataSource={denvD}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
-              />
-            </Col>
-          </Row>
+          <MediaQuery maxWidth={1224}>
+            {(matches) =>
+              matches ? (
+                <>
+                  <Divider orientation="left">Definitions</Divider>
+                  <List
+                    size="small"
+                    bordered
+                    dataSource={terms}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                  />
+
+                  <Divider orientation="left">Denver's Derivative</Divider>
+                  <List
+                    header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="
+                    size="small"
+                    bordered
+                    dataSource={denvD}
+                    renderItem={(item) => <List.Item>{item}</List.Item>}
+                  />
+                </>
+              ) : (
+                <Row gutter={100} justify="center">
+                  <Col span={10}>
+                    <Divider orientation="left">Definitions</Divider>
+                    <List
+                      size="small"
+                      bordered
+                      dataSource={terms}
+                      renderItem={(item) => <List.Item>{item}</List.Item>}
+                    />
+                  </Col>
+                  <Col span={10}>
+                    <Divider orientation="left">Denver's Derivative</Divider>
+                    <List
+                      header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="
+                      size="small"
+                      bordered
+                      dataSource={denvD}
+                      renderItem={(item) => <List.Item>{item}</List.Item>}
+                    />
+                  </Col>
+                </Row>
+              )
+            }
+          </MediaQuery>
         </Content>
 
-            <Typography>
-              Credit to Joe Rodgers for the idea.
-            </Typography>
+        <Typography>Credit to Joe Rodgers for the idea.</Typography>
 
-            <Typography>
-              Joe's Twitter: 
-              <Button
-              type="text"
-              href="https://twitter.com/_joerodgers"
-              icon={
-                <TwitterOutlined
-                  style={{ fontSize: "1rem" }}
-                  className="twitterIcon"
-                />
-              }
-              target={"_blank"}
-            />
-            </Typography>
-
-
+        <Typography>
+          Joe's Twitter:
+          <Button
+            type="text"
+            href="https://twitter.com/_joerodgers"
+            icon={
+              <TwitterOutlined
+                style={{ fontSize: "1rem" }}
+                className="twitterIcon"
+              />
+            }
+            target={"_blank"}
+          />
+        </Typography>
       </Footer>
     </Layout>
   );

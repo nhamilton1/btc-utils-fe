@@ -175,7 +175,7 @@ const Asics = () => {
 
     const data = {
       key: idx,
-      date: moment(new Date(a.date), "MM-DD-YYYY", true).format("MMM Do YY"),
+      date: moment(a.date, "MM-DD-YYYY", true).format("MMM Do YY"),
       efficiency: a.efficiency,
       model: a.model,
       price: a.price,
@@ -202,10 +202,10 @@ const Asics = () => {
     return <AsicSkeleton columns={columns} />;
   }
   if (hashRateStatsLoading) {
-    return <div>Loading Data...</div>;
+    return <AsicSkeleton columns={columns} />;
   }
   if (isLoading) {
-    return <div>Loading Data...</div>;
+    return <AsicSkeleton columns={columns} />;
   }
 
   const hiddenVals = [

@@ -175,7 +175,7 @@ const Asics = () => {
 
     const data = {
       key: idx,
-      date: moment(new Date(a.date)).format("MMM Do YY"),
+      date: moment(new Date(a.date), "MM-DD-YYYY", true).format("MMM Do YY"),
       efficiency: a.efficiency,
       model: a.model,
       price: a.price,
@@ -198,7 +198,6 @@ const Asics = () => {
     return data;
   });
 
-  console.log(formattingAsicData);
   if (btcPriceLoading) {
     return <AsicSkeleton columns={columns} />;
   }

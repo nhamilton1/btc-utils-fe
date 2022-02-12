@@ -1,5 +1,5 @@
-Front end for the ndp-be. This shows a CAGR graph and a normal distrubution curve. 
-https://nd-pool.herokuapp.com/
+This shows a CAGR graph, a normal distrubution curve, and a list of ASIC prices.
+https://btc-utils-fe.herokuapp.com/
 
 ## Developer Instructions
 

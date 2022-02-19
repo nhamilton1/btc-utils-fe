@@ -162,7 +162,7 @@ const Asics = () => {
     let asicBTCPrice =
       Math.round(1000000 * (a.price / currentBTCPrice)) / 1000000;
     let value = Math.round(a.price / a.th);
-    let wattDollar = value * a.efficiency;
+    let wattDollar = Number((value * a.efficiency).toFixed(0));
     let denverDerivative = Number((wattDollar / elongatedHashPrice).toFixed(2));
     let btcPerMonth =
       Math.round(1000000 * ((a.th / (currentHash * 1000000)) * 900 * 30.5)) /
@@ -176,7 +176,7 @@ const Asics = () => {
     const data = {
       key: idx,
       date: moment(a.date, "MM-DD-YYYY", true).format("MMM Do YY"),
-      efficiency: a.efficiency,
+      efficiency: a.efficiency.toFixed(1),
       model: a.model,
       price: a.price,
       th: a.th,

@@ -1,4 +1,4 @@
-import { TwitterOutlined } from "@ant-design/icons";
+import { SearchOutlined, TwitterOutlined } from "@ant-design/icons";
 import {
   Table,
   InputNumber,
@@ -8,6 +8,8 @@ import {
   Col,
   Typography,
   Button,
+  Input,
+  Space,
 } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import moment from "moment";
@@ -35,6 +37,12 @@ const Asics = () => {
       staleTime: Infinity,
     }
   );
+
+  const [, setState] = useState({
+    searchText: "",
+    searchedColumn: "",
+  });
+
   const { data: btcPrice, isLoading: btcPriceLoading } = useQuery(
     "fetchCurrentBTCPrice",
     fetchCurrentBTCPrice,
@@ -44,6 +52,7 @@ const Asics = () => {
       staleTime: Infinity,
     }
   );
+
   const { data: hashRateStats, isLoading: hashRateStatsLoading } = useQuery(
     "fetchHashRateStats",
     fetchHashRateStats,
@@ -62,6 +71,80 @@ const Asics = () => {
   );
   let elongatedHashPrice = currentHashPrice * 347.22;
 
+  let searchInput = null;
+  const getColumnSearchProps = (dataIndex) => ({
+    filterDropdown: ({
+      setSelectedKeys,
+      selectedKeys,
+      confirm,
+      clearFilters,
+    }) => (
+      <div style={{ padding: 8 }}>
+        <Input
+          ref={(node) => (searchInput = node)}
+          placeholder={`Search ${dataIndex}`}
+          value={selectedKeys[0]}
+          onChange={(e) =>
+            setSelectedKeys(e.target.value ? [e.target.value] : [])
+          }
+          onPressEnter={() => handleSearch(selectedKeys, confirm, dataIndex)}
+          style={{ marginBottom: 8, display: "block" }}
+        />
+        <Space>
+          <Button
+            onClick={() => handleReset(clearFilters, confirm)}
+            size="small"
+            style={{ width: 90 }}
+          >
+            Reset
+          </Button>
+          <Button
+            type="link"
+            size="small"
+            onClick={() => {
+              confirm({ closeDropdown: false });
+              setState({
+                searchText: selectedKeys[0],
+                searchedColumn: dataIndex,
+              });
+            }}
+          >
+            Filter
+          </Button>
+        </Space>
+      </div>
+    ),
+    filterIcon: (filtered) => (
+      <SearchOutlined style={{ color: filtered ? "#1890ff" : "orange" }} />
+    ),
+    onFilter: (value, record) =>
+      record[dataIndex]
+        ? record[dataIndex]
+            .toString()
+            .toLowerCase()
+            .includes(value.toLowerCase())
+        : "",
+    onFilterDropdownVisibleChange: (visible) => {
+      if (visible) {
+        setTimeout(() => searchInput.select(), 100);
+      }
+    },
+  });
+
+  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+    confirm();
+    setState({
+      searchText: selectedKeys[0],
+      searchedColumn: dataIndex,
+    });
+  };
+
+  const handleReset = (clearFilters, confirm) => {
+    clearFilters();
+    setState({ searchText: "" });
+    confirm({ closeDropdown: false });
+  };
+
   const columns = [
     {
       title: "Vendor",
@@ -72,6 +155,7 @@ const Asics = () => {
       title: "Asic Model",
       dataIndex: "model",
       key: "model",
+      ...getColumnSearchProps("model"),
     },
     {
       title: "TH",

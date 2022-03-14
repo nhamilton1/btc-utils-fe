@@ -1,16 +1,5 @@
 import { SearchOutlined, TwitterOutlined } from "@ant-design/icons";
-import {
-  Table,
-  InputNumber,
-  Divider,
-  List,
-  Row,
-  Col,
-  Typography,
-  Button,
-  Input,
-  Space,
-} from "antd";
+import { Table, InputNumber, Typography, Button, Input, Space } from "antd";
 import Layout, { Content, Footer, Header } from "antd/lib/layout/layout";
 import moment from "moment";
 import React, { useState } from "react";
@@ -21,7 +10,7 @@ import {
   fetchHashRateStats,
 } from "../../api";
 import AsicSkeleton from "./AsicSkeleton";
-import MediaQuery from "react-responsive";
+import DefsAndDenver from "./DefsAndDenver";
 
 const Asics = () => {
   const [kWhPrice, setkWhPrice] = useState(
@@ -293,28 +282,11 @@ const Asics = () => {
   }
 
   const hiddenVals = [
-    `Current BTC price: ${currentBTCPrice}`,
+    `Current BTC price: $${currentBTCPrice.toLocaleString()}`,
     `Current Network Hashrate: ${currentHash} EH/s`,
     `Current Hash Price: $${currentHashPrice}`,
-    `Elongated Hash Price: $${elongatedHashPrice}`,
+    `Elongated Hash Price: $${elongatedHashPrice?.toFixed(3)}`,
     `Current Hash Value: ${currentHashValue} sats`,
-  ];
-
-  const denvD = [
-    ">50 = If your power is less than ~$0.035 OR you're going to run the ASIC for five-plus years.",
-    "<50 = If your power is less than ~$0.055 OR you're going to run the ASIC for four-plus years.",
-    "<40 = If your power is less than ~$0.075 OR you're going to run the ASIC for three-plus years.",
-    "<30 = If your power is less than ~$0.125 OR you're going to run the ASIC for three years.",
-    "<20 = If your power is less than ~$0.15 OR you're going to run the ASIC for two-plus years.",
-    "<15 = Borrow to buy all the hardware (just kidding but not really).",
-  ];
-
-  const terms = [
-    "Watts/Th = An ASIC's total watt consumption divided by its nominal Th/s rating.",
-    "$/Th = The total cost of an ASIC divided by its nominal Th/s rating.",
-    "WattDollar = The product of an ASIC's watts/Th multiplied by $/Th.",
-    "Hash price = USD value of 1 Th/s over the course of 24 hours.",
-    "Elongated hash price = USD value of 1 Th/s over the course of 50,000 blocks.",
   ];
 
   return (
@@ -344,71 +316,7 @@ const Asics = () => {
       </Content>
       <Footer style={{ paddingTop: 0, width: "100%" }}>
         <Content>
-          <MediaQuery maxWidth={1224}>
-            {(matches) =>
-              matches ? (
-                <>
-                  <Divider orientation="left">Hidden Values</Divider>
-                  <List
-                    header="Values that are used in the table, but are not displayed"
-                    size="small"
-                    bordered
-                    dataSource={hiddenVals}
-                    renderItem={(item) => <List.Item>{item}</List.Item>}
-                  />
-
-                  <Divider orientation="left">Definitions</Divider>
-                  <List
-                    size="small"
-                    bordered
-                    dataSource={terms}
-                    renderItem={(item) => <List.Item>{item}</List.Item>}
-                  />
-
-                  <Divider orientation="left">Denver's Derivative</Divider>
-                  <List
-                    header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="
-                    size="small"
-                    bordered
-                    dataSource={denvD}
-                    renderItem={(item) => <List.Item>{item}</List.Item>}
-                  />
-                </>
-              ) : (
-                <Row gutter={100} justify="center">
-                  <Col span={8}>
-                    <Divider orientation="left">Hidden Values</Divider>
-                    <List
-                      header="Values that are used in the table, but are not displayed"
-                      size="small"
-                      bordered
-                      dataSource={hiddenVals}
-                      renderItem={(item) => <List.Item>{item}</List.Item>}
-                    />
-                  </Col>
-                  <Col span={8}>
-                    <Divider orientation="left">Definitions</Divider>
-                    <List
-                      size="small"
-                      bordered
-                      dataSource={terms}
-                      renderItem={(item) => <List.Item>{item}</List.Item>}
-                    />
-                  </Col>
-                  <Col span={8}>
-                    <Divider orientation="left">Denver's Derivative</Divider>
-                    <List
-                      header="Denver's Derivative (DD) = WattDollar/Elongated hash price ="
-                      size="small"
-                      bordered
-                      dataSource={denvD}
-                      renderItem={(item) => <List.Item>{item}</List.Item>}
-                    />
-                  </Col>
-                </Row>
-              )
-            }
-          </MediaQuery>
+          <DefsAndDenver hiddenVals={hiddenVals} />
         </Content>
 
         <Typography>Credit to Joe Rodgers for the idea.</Typography>

@@ -218,6 +218,9 @@ const Asics = () => {
       title: "Months to ROI",
       dataIndex: "monthsToRoi",
       key: "monthsToRoi",
+      sorter: {
+        compare: (a, b) => b.monthsToRoi - a.monthsToRoi,
+      },
     },
     {
       title: "$/Month",

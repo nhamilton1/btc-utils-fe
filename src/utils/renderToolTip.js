@@ -1,3 +1,4 @@
+import React from "react";
 import { toolTipstyle, toolTipstyleCND } from "../components/styles";
 
 export const renderToolTip = (props) => {

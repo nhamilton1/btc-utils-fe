@@ -23,10 +23,11 @@ import Layout from "antd/lib/layout/layout";
 import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 
-const NormalDistribution = () => {
-  const [poolName, setPoolName] = useState("SlushPool");
 
-  const { data: poolBlockCounterPerDay, isLoading } = useQuery(
+const NormalDistribution = () => {
+  const [poolName, setPoolName] = useState<string>("SlushPool");
+
+  const { data: poolBlockCounterPerDay, isLoading } = useQuery<number[] | undefined, boolean>(
     ["fetchPoolBlockCounterPerDay", poolName],
     fetchPoolBlockCounterPerDay,
     {
@@ -40,20 +41,19 @@ const NormalDistribution = () => {
     return <Skeleton paragraph={{ rows: 10 }} />;
   }
 
-  const dataPoints = Object.values(poolBlockCounterPerDay).sort(
+  const dataPoints = Object.values(poolBlockCounterPerDay!).sort(
     (a, b) => a - b
   );
 
   const lowerBound = Math.min(...dataPoints),
     upperBound = Math.max(...dataPoints);
 
-  const zScore = (x) => Number(((x - mean) / stdDev).toFixed(2));
+  const zScore = (x: number) => Number(((x - mean) / stdDev).toFixed(2));
 
   let mean = getMean(lowerBound, upperBound);
   let stdDev = getStdDeviation(lowerBound, upperBound);
   let points = generatePoints(lowerBound, upperBound);
   let removeDupes = [...new Set(points.map((x) => Number(x.toFixed(0))))];
-  // let data = removeDupes.map(x => ({ x, y: zScore(x), z: GetZPercent(zScore(x)) }));
   let newDataSet = removeDupes.map((x) => ({
     x,
     y: zScore(x),

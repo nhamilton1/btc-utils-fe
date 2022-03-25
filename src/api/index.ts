@@ -6,19 +6,27 @@ const asicURL = "https://btc-utils-be.herokuapp.com/api/asics";
 const btcPriceURL = "https://insights.braiins.com/api/v1.0/price-stats";
 const hashRateStats = "https://insights.braiins.com/api/v1.0/hash-rate-stats";
 
-export const fetchPoolBlockCounterPerDay = async ({ queryKey }) => {
-  // eslint-disable-next-line no-unused-vars
+export const fetchPoolBlockCounterPerDay = async ({ queryKey }): Promise<number[]> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, poolName] = queryKey;
   try {
     const res = await axios.get(poolURL, { params: { pool: poolName } });
     return res.data.data;
   } catch (error) {
     console.log(error);
+    throw(error);
   }
 };
 
-export const fetchHistoricPriceRange = async ({ queryKey }) => {
-  // eslint-disable-next-line no-unused-vars
+interface historicPricesInterface { 
+  btc_price: number;
+  date: string;
+  gld_price: number;
+  spy_price: number;
+}
+
+export const fetchHistoricPriceRange = async ({ queryKey }): Promise<historicPricesInterface[]> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, date] = queryKey;
   try {
     const res = await axios.get(historicURL, {
@@ -27,6 +35,7 @@ export const fetchHistoricPriceRange = async ({ queryKey }) => {
     return res.data;
   } catch (err) {
     console.log(err);
+    throw(err);
   }
 };
 
@@ -36,23 +45,42 @@ export const fetchAsicData = async () => {
     return res.data;
   } catch (err) {
     console.error(err);
+    throw(err);
   }
 };
 
-export const fetchCurrentBTCPrice = async () => {
+interface currBtcPriceInterface {
+  price: number;
+  timestamp?: string;
+}
+
+export const fetchCurrentBTCPrice = async (): Promise<currBtcPriceInterface> => {
   try {
     const res = await axios.get(btcPriceURL);
     return res.data;
   } catch (err) {
     console.error(err);
+    throw(err);
   }
 };
 
-export const fetchHashRateStats = async () => {
+
+interface hashRateStatsInterface {
+  avg_fees_per_block?: number;
+  current_hash_rate?: number;
+  fees_percent?: number;
+  hash_price?: number;
+  hash_rate_30?: number;
+  hash_value?: number;
+  rev_usd?: number;
+}
+
+export const fetchHashRateStats = async (): Promise<hashRateStatsInterface> => {
   try {
     const res = await axios.get(hashRateStats);
     return res.data;
   } catch (err) {
     console.error(err);
+    throw(err);
   }
 };

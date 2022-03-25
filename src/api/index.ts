@@ -18,7 +18,7 @@ export const fetchPoolBlockCounterPerDay = async ({ queryKey }): Promise<number[
   }
 };
 
-interface historicPricesInterface { 
+export interface historicPricesInterface { 
   btc_price: number;
   date: string;
   gld_price: number;

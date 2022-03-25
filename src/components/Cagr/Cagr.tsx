@@ -12,8 +12,8 @@ import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 
 const { RangePicker } = DatePicker;
-const oneYearAgoToday = moment().subtract(1, "year").format("YYYY-MM-DD");
-const todaysDate = moment(new Date()).format("YYYY-MM-DD");
+const oneYearAgoToday: string = moment().subtract(1, "year").format("YYYY-MM-DD");
+const todaysDate: string = moment(new Date()).format("YYYY-MM-DD");
 
 const initialDates = [oneYearAgoToday, todaysDate];
 

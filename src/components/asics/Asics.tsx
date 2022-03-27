@@ -12,6 +12,11 @@ import {
 import AsicSkeleton from "./AsicSkeleton";
 import DefsAndDenver from "./DefsAndDenver";
 
+interface searchInterface {
+  searchText?: string;
+  searchedColumn?: string;
+}
+
 const Asics = () => {
   const [kWhPrice, setkWhPrice] = useState(
     localStorage.getItem("kWhPrice") || 0.12
@@ -27,7 +32,7 @@ const Asics = () => {
     }
   );
 
-  const [, setState] = useState({
+  const [, setState] = useState<searchInterface>({
     searchText: "",
     searchedColumn: "",
   });
@@ -53,15 +58,15 @@ const Asics = () => {
   );
 
   let currentBTCPrice = btcPrice?.price;
-  let currentHash = hashRateStats?.current_hashrate;
-  let currentHashValue = Math.round(hashRateStats?.hash_value * 100000000);
+  let currentHash = hashRateStats?.current_hash_rate;
+  let currentHashValue = Math.round(hashRateStats?.hash_value! * 100000000);
   let currentHashPrice = Number(
-    (currentBTCPrice * currentHashValue * 0.00000001).toFixed(4)
+    (currentBTCPrice! * currentHashValue * 0.00000001).toFixed(4)
   );
   let elongatedHashPrice = currentHashPrice * 347.22;
 
-  let searchInput = null;
-  const getColumnSearchProps = (dataIndex) => ({
+  let searchInput: any = null;
+  const getColumnSearchProps = (dataIndex: string) => ({
     filterDropdown: ({
       setSelectedKeys,
       selectedKeys,
@@ -103,7 +108,7 @@ const Asics = () => {
         </Space>
       </div>
     ),
-    filterIcon: (filtered) => (
+    filterIcon: (filtered: any) => (
       <SearchOutlined style={{ color: filtered ? "#1890ff" : "orange" }} />
     ),
     onFilter: (value, record) =>
@@ -113,14 +118,14 @@ const Asics = () => {
             .toLowerCase()
             .includes(value.toLowerCase())
         : "",
-    onFilterDropdownVisibleChange: (visible) => {
+    onFilterDropdownVisibleChange: (visible: any) => {
       if (visible) {
         setTimeout(() => searchInput.select(), 100);
       }
     },
   });
 
-  const handleSearch = (selectedKeys, confirm, dataIndex) => {
+  const handleSearch = (selectedKeys: any[], confirm: () => void, dataIndex: string) => {
     confirm();
     setState({
       searchText: selectedKeys[0],
@@ -176,7 +181,7 @@ const Asics = () => {
       dataIndex: "asicBTCPrice",
       key: "asicBTCPrice",
       sorter: {
-        compare: (a, b) => b.asicBTCPrice - a.asicBTCPrice,
+        compare: (a: { asicBTCPrice: number; }, b: { asicBTCPrice: number; }) => b.asicBTCPrice - a.asicBTCPrice,
         multiple: 2,
       },
     },
@@ -195,7 +200,7 @@ const Asics = () => {
       dataIndex: "denverDerivative",
       key: "denverDerivative",
       sorter: {
-        compare: (a, b) => b.denverDerivative - a.denverDerivative,
+        compare: (a: { denverDerivative: number; }, b: { denverDerivative: number; }) => b.denverDerivative - a.denverDerivative,
         multiple: 1,
       },
     },
@@ -219,7 +224,7 @@ const Asics = () => {
       dataIndex: "monthsToRoi",
       key: "monthsToRoi",
       sorter: {
-        compare: (a, b) => b.monthsToRoi - a.monthsToRoi,
+        compare: (a: { monthsToRoi: number; }, b: { monthsToRoi: number; }) => b.monthsToRoi - a.monthsToRoi,
       },
     },
     {
@@ -227,25 +232,35 @@ const Asics = () => {
       dataIndex: "dollarPerMonth",
       key: "dollarPerMonth",
     },
-  ];
+  ] as any;
 
-  const onChangekWhPrice = (value) => {
+  const onChangekWhPrice = (value: React.SetStateAction<string | number>) => {
     setkWhPrice(value);
-    localStorage.setItem("kWhPrice", value);
+    localStorage.setItem("kWhPrice", value.toString());
   };
 
-  const formattingAsicData = asicData?.map((a, idx) => {
+  interface formattedInterface {
+    price: number;
+    th: number;
+    efficiency: number;
+    watts: number;
+    date: moment.MomentInput;
+    model: string;
+    vendor: string;
+  }
+
+  const formattingAsicData = asicData?.map((a: formattedInterface, idx: number) => {
     let asicBTCPrice =
-      Math.round(1000000 * (a.price / currentBTCPrice)) / 1000000;
+      Math.round(1000000 * (a.price / currentBTCPrice!)) / 1000000;
     let value = Math.round(a.price / a.th);
     let wattDollar = Number((value * a.efficiency).toFixed(0));
     let denverDerivative = Number((wattDollar / elongatedHashPrice).toFixed(2));
     let btcPerMonth =
-      Math.round(1000000 * ((a.th / (currentHash * 1000000)) * 900 * 30.5)) /
+      Math.round(1000000 * ((a.th / (currentHash! * 1000000)) * 900 * 30.5)) /
       1000000;
-    let dollarPerMonth = Math.round(btcPerMonth * currentBTCPrice);
+    let dollarPerMonth = Math.round(btcPerMonth * currentBTCPrice!);
     let monthlyEnergy =
-      Math.round(100 * (732 * (a.watts * 0.001) * kWhPrice)) / 100;
+      Math.round(100 * (732 * (a.watts * 0.001) * Number(kWhPrice))) / 100;
     let profitMonth = Math.round(dollarPerMonth - monthlyEnergy);
     let monthsToRoi = Math.round(100 * (a.price / dollarPerMonth)) / 100;
 
@@ -285,7 +300,7 @@ const Asics = () => {
   }
 
   const hiddenVals = [
-    `Current BTC price: $${currentBTCPrice.toLocaleString()}`,
+    `Current BTC price: $${currentBTCPrice?.toLocaleString()}`,
     `Current Network Hashrate: ${currentHash} EH/s`,
     `Current Hash Price: $${currentHashPrice}`,
     `Elongated Hash Price: $${elongatedHashPrice?.toFixed(3)}`,

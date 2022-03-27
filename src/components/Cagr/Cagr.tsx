@@ -57,10 +57,10 @@ const Cagr = () => {
 
   return (
     <Layout style={{ display: "flex" }}>
-      <CagrValue historicPriceRange={historicPriceRange} />
+      <CagrValue historicPriceRange={historicPriceRange!} />
       <Row>
         <Col span={24}>
-          <CagrChart historicPriceRange={historicPriceRange} />
+          <CagrChart historicPriceRange={historicPriceRange!} />
         </Col>
       </Row>
       <Space

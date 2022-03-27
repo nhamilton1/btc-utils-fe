@@ -12,6 +12,8 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import Layout from "antd/lib/layout/layout";
+import { historicPricesInterface } from "api";
+
 
 ChartJS.register(
   CategoryScale,
@@ -24,13 +26,13 @@ ChartJS.register(
   Decimation
 );
 
-const CagrChart = (props) => {
+const CagrChart = (props: { historicPriceRange: historicPricesInterface[]; }) => {
   const { historicPriceRange } = props;
   // formatting data
-  const labels = historicPriceRange.map((x) => x.date);
-  const btc_price_data = historicPriceRange.map((x) => x.btc_price);
-  const gld_price_data = historicPriceRange.map((x) => x.gld_price);
-  const spy_price_data = historicPriceRange.map((x) => x.spy_price);
+  const labels = historicPriceRange.map((x: { date: string; }) => x.date);
+  const btc_price_data = historicPriceRange.map((x: { btc_price: number; }) => x.btc_price);
+  const gld_price_data = historicPriceRange.map((x: { gld_price: number; }) => x.gld_price);
+  const spy_price_data = historicPriceRange.map((x: { spy_price: number; }) => x.spy_price);
 
   // is this even doing anything?
   const decimation = {
@@ -68,7 +70,7 @@ const CagrChart = (props) => {
         position: "right",
       },
     },
-  };
+  } as any;
 
   const data = {
     type: "line",

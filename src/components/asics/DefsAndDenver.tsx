@@ -15,7 +15,7 @@ const DefsAndDenver = ({hiddenVals}) => {
               size="small"
               bordered
               dataSource={hiddenVals}
-              renderItem={(item) => <List.Item>{item}</List.Item>}
+              renderItem={(item: string) => <List.Item>{item}</List.Item>}
             />
 
             <Divider orientation="left">Definitions</Divider>
@@ -44,7 +44,7 @@ const DefsAndDenver = ({hiddenVals}) => {
                 size="small"
                 bordered
                 dataSource={hiddenVals}
-                renderItem={(item) => <List.Item>{item}</List.Item>}
+                renderItem={(item: string) => <List.Item>{item}</List.Item>}
               />
             </Col>
             <Col span={8}>

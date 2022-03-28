@@ -1,6 +1,7 @@
 This shows a CAGR graph, a normal distrubution curve, and a list of ASIC prices.
 https://btc-utils-fe.herokuapp.com/
 
+
 ## Developer Instructions
 
 1. Clone the repo repository to your machine.

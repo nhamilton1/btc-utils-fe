@@ -4,7 +4,9 @@ import { historicPricesInterface } from "api";
 import React from "react";
 import { gridStyle } from "../styles";
 
-const CagrValue = (props: { historicPriceRange: historicPricesInterface[]; }): JSX.Element => {
+const CagrValue = (props: {
+  historicPriceRange: historicPricesInterface[];
+}): JSX.Element => {
   const { historicPriceRange } = props;
 
   const cagrFormula = (
@@ -19,9 +21,13 @@ const CagrValue = (props: { historicPriceRange: historicPricesInterface[]; }): J
   let numOfYears = historicPriceRange?.length / 365;
   //bitcoin cagr values
   let btcEndVal: number =
-    historicPriceRange[historicPriceRange?.length - 1]?.btc_price;
+    historicPriceRange[historicPriceRange?.length - 1] === null
+      ? historicPriceRange[historicPriceRange?.length - 2]?.btc_price
+      : historicPriceRange[historicPriceRange?.length - 1]?.btc_price;
+      
   let btcBeginningVal: number = historicPriceRange[0]?.btc_price;
   const btcCagrVal = cagrFormula(btcEndVal, btcBeginningVal, numOfYears);
+  console.log(historicPriceRange);
 
   //gld cagr values
   let gldEndVal: number =

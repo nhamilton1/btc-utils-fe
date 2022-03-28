@@ -67,7 +67,7 @@ export const fetchCurrentBTCPrice = async (): Promise<currBtcPriceInterface> => 
 
 interface hashRateStatsInterface {
   avg_fees_per_block?: number;
-  current_hash_rate?: number;
+  current_hashrate?: number;
   fees_percent?: number;
   hash_price?: number;
   hash_rate_30?: number;

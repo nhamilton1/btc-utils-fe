@@ -58,7 +58,7 @@ const Asics = () => {
   );
 
   let currentBTCPrice = btcPrice?.price;
-  let currentHash = hashRateStats?.current_hash_rate;
+  let currentHash = hashRateStats?.current_hashrate;
   let currentHashValue = Math.round(hashRateStats?.hash_value! * 100000000);
   let currentHashPrice = Number(
     (currentBTCPrice! * currentHashValue * 0.00000001).toFixed(4)

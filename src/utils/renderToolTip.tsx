@@ -1,7 +1,7 @@
-import React from "react";
+import React, { DetailedHTMLProps, HTMLAttributes } from "react";
 import { toolTipstyle, toolTipstyleCND } from "../components/styles";
 
-export const renderToolTip = (props) => {
+export const renderToolTip = (props): DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> | null => {
   if (props.active) {
     return (
       <div>

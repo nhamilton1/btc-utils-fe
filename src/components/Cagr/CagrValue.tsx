@@ -19,7 +19,7 @@ const CagrValue = (props: { historicPriceRange: historicPricesInterface[]; }): J
   let numOfYears = historicPriceRange?.length / 365;
   //bitcoin cagr values
   let btcEndVal: number =
-    historicPriceRange[historicPriceRange.length - 1]?.btc_price;
+    historicPriceRange[historicPriceRange?.length - 1]?.btc_price;
   let btcBeginningVal: number = historicPriceRange[0]?.btc_price;
   const btcCagrVal = cagrFormula(btcEndVal, btcBeginningVal, numOfYears);
 
@@ -30,7 +30,7 @@ const CagrValue = (props: { historicPriceRange: historicPricesInterface[]; }): J
   const gldCagrVal = cagrFormula(gldEndVal, gldBeginningVal, numOfYears);
 
   //spy cagr values
-  let spyEndVal = historicPriceRange[historicPriceRange.length - 1].spy_price;
+  let spyEndVal = historicPriceRange[historicPriceRange?.length - 1].spy_price;
   let spyBeginningVal = historicPriceRange[0].spy_price;
   const spyCagrVal = cagrFormula(spyEndVal, spyBeginningVal, numOfYears);
 

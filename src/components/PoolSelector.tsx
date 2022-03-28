@@ -1,7 +1,14 @@
 import { Select } from "antd";
 import React from "react";
 
-const PoolSelector = (props) => {
+
+
+interface PoolInterface {
+  poolName: string;
+  setPoolName: any;
+}
+
+const PoolSelector = (props: PoolInterface) => {
   const { poolName, setPoolName } = props;
   const pools = [
     "SlushPool",

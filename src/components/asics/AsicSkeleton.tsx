@@ -1,6 +1,7 @@
 import { Table, Skeleton } from "antd";
 import Layout, { Content, Header } from "antd/lib/layout/layout";
 import SkeletonButton from "antd/lib/skeleton/Button";
+import React from "react";
 
 const AsicSkeleton = ({ columns }) => {
   const rowCount = 10;

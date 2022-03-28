@@ -1,12 +1,12 @@
 import _ from "lodash";
 
-export const getMean = (lowerBound, upperBound) =>
+export const getMean = (lowerBound: number, upperBound: number): number =>
   (upperBound + lowerBound) / 2;
 
-export const getStdDeviation = (lowerBound, upperBound) =>
+export const getStdDeviation = (lowerBound: number, upperBound: number): number =>
   (upperBound - lowerBound) / 4;
 
-export const generatePoints = (lowerBound, upperBound) => {
+export const generatePoints = (lowerBound: number, upperBound: number): number[] => {
   let stdDev = getStdDeviation(lowerBound, upperBound);
   let min = 0;
   let max = upperBound + 2 * stdDev;
@@ -14,7 +14,7 @@ export const generatePoints = (lowerBound, upperBound) => {
   return _.range(min, max, unit);
 };
 
-export const GetZPercent = (z) => {
+export const GetZPercent = (z: number): number => {
   // z == number of standard deviations from the mean
   // if z is greater than 6.5 standard deviations from the mean the
   // number of significant digits will be outside of a reasonable range
@@ -45,7 +45,7 @@ export const GetZPercent = (z) => {
   return sum;
 };
 
-export const GetNewZPercent = (z) => {
+export const GetNewZPercent = (z: number): number => {
   if (z < -6.5) {
     return 0.0;
   }

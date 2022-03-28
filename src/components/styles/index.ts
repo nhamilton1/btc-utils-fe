@@ -14,7 +14,7 @@ export const toolTipstyleCND = {
 };
 
 export const gridStyle = {
-  textAlign: 'center',
+  textAlign: 'center' as 'center',
   display: 'flex',
-  flexDirection: 'column',
+  flexDirection: 'column' as 'column',
 };

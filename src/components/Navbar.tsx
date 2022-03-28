@@ -5,12 +5,12 @@ import MediaQuery from "react-responsive";
 
 const { Header } = Layout;
 
-const Navbar = () => {
+const Navbar  = () => {
   return (
     <MediaQuery maxWidth={550}>
-      {(matches) =>
+      {(matches: any) =>
         matches ? (
-          <Menu theme="dark" mode="vertical" openKeys={"sub1"}>
+          <Menu theme="dark" mode="vertical" openKeys={["sub1"]}>
             <Menu.Item key="1">
               <Link to="/cagr">CAGR</Link>
             </Menu.Item>
@@ -27,7 +27,7 @@ const Navbar = () => {
           <Layout className="layout">
             <Header className="header">
               <div className="logo" />
-              <Menu theme="dark" mode="horizontal" openKeys={"sub1"}>
+              <Menu theme="dark" mode="horizontal" openKeys={["sub1"]}>
                 <Menu.Item key="1">
                   <Link to="/cagr">CAGR</Link>
                 </Menu.Item>

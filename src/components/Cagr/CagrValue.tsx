@@ -1,34 +1,50 @@
 import { ArrowDownOutlined, ArrowUpOutlined } from "@ant-design/icons";
 import { Card, Statistic } from "antd";
+import { historicPricesInterface } from "api";
 import React from "react";
 import { gridStyle } from "../styles";
 
-const CagrValue = (props) => {
+const CagrValue = (props: {
+  historicPriceRange: historicPricesInterface[];
+}): JSX.Element => {
   const { historicPriceRange } = props;
 
-  const cagrFormula = (endVal, beginningVal, numOfYears) =>
-    ((Math.pow(endVal / beginningVal, 1 / numOfYears) - 1) * 100).toFixed(2);
+  const cagrFormula = (
+    endVal: number,
+    beginningVal: number,
+    numOfYears: number
+  ) =>
+    Number(
+      ((Math.pow(endVal / beginningVal, 1 / numOfYears) - 1) * 100).toFixed(2)
+    );
 
-  let numOfYears = historicPriceRange.length / 365;
+  let numOfYears = historicPriceRange?.length / 365;
   //bitcoin cagr values
-  let btcEndVal = historicPriceRange[historicPriceRange.length - 1].btc_price;
-  let btcBeginningVal = historicPriceRange[0].btc_price;
+  let btcEndVal: number =
+    historicPriceRange[historicPriceRange?.length - 1] === null
+      ? historicPriceRange[historicPriceRange?.length - 2]?.btc_price
+      : historicPriceRange[historicPriceRange?.length - 1]?.btc_price;
+      
+  let btcBeginningVal: number = historicPriceRange[0]?.btc_price;
   const btcCagrVal = cagrFormula(btcEndVal, btcBeginningVal, numOfYears);
+  console.log(historicPriceRange);
 
   //gld cagr values
-  let gldEndVal = historicPriceRange[historicPriceRange.length - 1].gld_price;
-  let gldBeginningVal = historicPriceRange[0].gld_price;
+  let gldEndVal: number =
+    historicPriceRange[historicPriceRange?.length - 1]?.gld_price;
+  let gldBeginningVal: number = historicPriceRange[0]?.gld_price;
   const gldCagrVal = cagrFormula(gldEndVal, gldBeginningVal, numOfYears);
 
   //spy cagr values
-  let spyEndVal = historicPriceRange[historicPriceRange.length - 1].spy_price;
+  let spyEndVal = historicPriceRange[historicPriceRange?.length - 1].spy_price;
   let spyBeginningVal = historicPriceRange[0].spy_price;
   const spyCagrVal = cagrFormula(spyEndVal, spyBeginningVal, numOfYears);
 
+  // removed size="small" from card
   return (
     <>
       <Card>
-        <Card.Grid size="small" style={gridStyle}>
+        <Card.Grid style={gridStyle}>
           <Statistic
             title={`BTC CAGR`}
             value={`${btcCagrVal}%`}
@@ -41,7 +57,7 @@ const CagrValue = (props) => {
             }
           />
         </Card.Grid>
-        <Card.Grid size="small" style={gridStyle}>
+        <Card.Grid style={gridStyle}>
           <Statistic
             title={`GLD CAGR`}
             value={`${gldCagrVal}%`}
@@ -54,7 +70,7 @@ const CagrValue = (props) => {
             }
           />
         </Card.Grid>
-        <Card.Grid size="small" style={gridStyle}>
+        <Card.Grid style={gridStyle}>
           <Statistic
             title={`SPY CAGR`}
             value={`${spyCagrVal}%`}

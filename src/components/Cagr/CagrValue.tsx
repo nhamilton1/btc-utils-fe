@@ -24,10 +24,9 @@ const CagrValue = (props: {
     historicPriceRange[historicPriceRange?.length - 1] === null
       ? historicPriceRange[historicPriceRange?.length - 2]?.btc_price
       : historicPriceRange[historicPriceRange?.length - 1]?.btc_price;
-      
+
   let btcBeginningVal: number = historicPriceRange[0]?.btc_price;
   const btcCagrVal = cagrFormula(btcEndVal, btcBeginningVal, numOfYears);
-  console.log(historicPriceRange);
 
   //gld cagr values
   let gldEndVal: number =

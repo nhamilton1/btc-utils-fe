@@ -23,19 +23,17 @@ import Layout from "antd/lib/layout/layout";
 import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 
-
-const NormalDistribution = () => {
+const NormalDistribution: React.FC = () => {
   const [poolName, setPoolName] = useState<string>("SlushPool");
 
-  const { data: poolBlockCounterPerDay, isLoading } = useQuery<number[] | undefined, boolean>(
-    ["fetchPoolBlockCounterPerDay", poolName],
-    fetchPoolBlockCounterPerDay,
-    {
-      keepPreviousData: true,
-      refetchOnWindowFocus: false,
-      staleTime: Infinity,
-    }
-  );
+  const { data: poolBlockCounterPerDay, isLoading } = useQuery<
+    number[] | undefined,
+    boolean
+  >(["fetchPoolBlockCounterPerDay", poolName], fetchPoolBlockCounterPerDay, {
+    keepPreviousData: true,
+    refetchOnWindowFocus: false,
+    staleTime: Infinity,
+  });
 
   if (isLoading) {
     return <Skeleton paragraph={{ rows: 10 }} />;

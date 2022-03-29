@@ -4,11 +4,11 @@ import { historicPricesInterface } from "api";
 import React from "react";
 import { gridStyle } from "../styles";
 
-const CagrValue = (props: {
+interface IProps {
   historicPriceRange: historicPricesInterface[];
-}): JSX.Element => {
-  const { historicPriceRange } = props;
+}
 
+const CagrValue: React.FC<IProps> = ({ historicPriceRange }): JSX.Element => {
   const cagrFormula = (
     endVal: number,
     beginningVal: number,

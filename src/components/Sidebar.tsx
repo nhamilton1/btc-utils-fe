@@ -7,7 +7,7 @@ import {
 } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 
-const Sidebar = (): JSX.Element => {
+const Sidebar: React.FC = (): JSX.Element => {
   return (
     <Layout.Sider style={{ minHeight: "100vh" }} width={"8vw"}>
       <Menu theme="dark" mode="inline" openKeys={["sub1"]}>

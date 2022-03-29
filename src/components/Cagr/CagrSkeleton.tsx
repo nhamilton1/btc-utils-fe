@@ -2,7 +2,7 @@ import { Col, Row, Skeleton } from "antd";
 import Layout from "antd/lib/layout/layout";
 import React from "react";
 
-const CagrSkeleton = () => {
+const CagrSkeleton: React.FC = () => {
   return (
     <Layout>
       <Row>

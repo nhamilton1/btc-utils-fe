@@ -3,7 +3,12 @@ import React from "react";
 import MediaQuery from "react-responsive";
 import { denvD, terms } from "./utils";
 
-const DefsAndDenver = ({hiddenVals}) => {
+
+interface IProps {
+  hiddenVals: Array<string>;
+}
+
+const DefsAndDenver: React.FC<IProps> = ({hiddenVals}) => {
   return (
     <MediaQuery maxWidth={1224}>
       {(matches) =>

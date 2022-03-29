@@ -2,7 +2,7 @@ import { GithubOutlined, TwitterOutlined } from "@ant-design/icons";
 import { Button, Col, Row, Typography } from "antd";
 import React from "react";
 
-const FooterComp = () => {
+const FooterComp: React.FC = () => {
   return (
     <>
       <Row justify="center">

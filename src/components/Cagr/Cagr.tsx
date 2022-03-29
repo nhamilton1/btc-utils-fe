@@ -12,12 +12,14 @@ import Title from "antd/lib/typography/Title";
 import Paragraph from "antd/lib/typography/Paragraph";
 
 const { RangePicker } = DatePicker;
-const oneYearAgoToday: string = moment().subtract(1, "year").format("YYYY-MM-DD");
+const oneYearAgoToday: string = moment()
+  .subtract(1, "year")
+  .format("YYYY-MM-DD");
 const todaysDate: string = moment(new Date()).format("YYYY-MM-DD");
 
 const initialDates = [oneYearAgoToday, todaysDate];
 
-const Cagr = () => {
+const Cagr: React.FC = () => {
   const [date, setDate] = useState(initialDates);
 
   const { data: historicPriceRange, isLoading } = useQuery(

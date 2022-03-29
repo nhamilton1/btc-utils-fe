@@ -17,7 +17,7 @@ interface searchInterface {
   searchedColumn?: string;
 }
 
-const Asics = () => {
+const Asics: React.FC = () => {
   const [kWhPrice, setkWhPrice] = useState(
     localStorage.getItem("kWhPrice") || 0.12
   );
@@ -299,7 +299,7 @@ const Asics = () => {
     return <AsicSkeleton columns={columns} />;
   }
 
-  const hiddenVals = [
+  const hiddenVals: Array<string> = [
     `Current BTC price: $${currentBTCPrice?.toLocaleString()}`,
     `Current Network Hashrate: ${currentHash} EH/s`,
     `Current Hash Price: $${currentHashPrice}`,

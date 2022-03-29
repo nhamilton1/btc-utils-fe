@@ -14,7 +14,6 @@ import { Line } from "react-chartjs-2";
 import Layout from "antd/lib/layout/layout";
 import { historicPricesInterface } from "api";
 
-
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -26,13 +25,22 @@ ChartJS.register(
   Decimation
 );
 
-const CagrChart = (props: { historicPriceRange: historicPricesInterface[]; }) => {
-  const { historicPriceRange } = props;
+interface IProps {
+  historicPriceRange: historicPricesInterface[];
+}
+
+const CagrChart: React.FC<IProps> = ({ historicPriceRange }) => {
   // formatting data
-  const labels = historicPriceRange.map((x: { date: string; }) => x.date);
-  const btc_price_data = historicPriceRange.map((x: { btc_price: number; }) => x.btc_price);
-  const gld_price_data = historicPriceRange.map((x: { gld_price: number; }) => x.gld_price);
-  const spy_price_data = historicPriceRange.map((x: { spy_price: number; }) => x.spy_price);
+  const labels = historicPriceRange.map((x: { date: string }) => x.date);
+  const btc_price_data = historicPriceRange.map(
+    (x: { btc_price: number }) => x.btc_price
+  );
+  const gld_price_data = historicPriceRange.map(
+    (x: { gld_price: number }) => x.gld_price
+  );
+  const spy_price_data = historicPriceRange.map(
+    (x: { spy_price: number }) => x.spy_price
+  );
 
   // is this even doing anything?
   const decimation = {
@@ -104,8 +112,8 @@ const CagrChart = (props: { historicPriceRange: historicPricesInterface[]; }) =>
   };
 
   return (
-    <Layout style={{width: '100%', height: '69vh'}}>
-      <Line data={data} options={options}/>
+    <Layout style={{ width: "100%", height: "69vh" }}>
+      <Line data={data} options={options} />
     </Layout>
   );
 };

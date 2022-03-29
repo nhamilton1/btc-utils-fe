@@ -1,15 +1,12 @@
 import { Select } from "antd";
 import React from "react";
 
-
-
 interface PoolInterface {
   poolName: string;
   setPoolName: any;
 }
 
-const PoolSelector = (props: PoolInterface) => {
-  const { poolName, setPoolName } = props;
+const PoolSelector: React.FC<PoolInterface> = ({ poolName, setPoolName }) => {
   const pools = [
     "SlushPool",
     "F2Pool",

@@ -5,7 +5,7 @@ import MediaQuery from "react-responsive";
 
 const { Header } = Layout;
 
-const Navbar  = () => {
+const Navbar: React.FC = () => {
   return (
     <MediaQuery maxWidth={550}>
       {(matches: any) =>

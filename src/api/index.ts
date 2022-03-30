@@ -2,11 +2,13 @@ import axios from "axios";
 
 const poolURL = process.env.REACT_APP_BASE_URL + "api/nd/pool_block_counter";
 const historicURL = process.env.REACT_APP_BASE_URL + "api/historic_prices";
-const asicURL = "https://btc-utils-be.herokuapp.com/api/asics";
-const btcPriceURL = "https://insights.braiins.com/api/v1.0/price-stats";
-const hashRateStats = "https://insights.braiins.com/api/v1.0/hash-rate-stats";
+const asicURL = process.env.REACT_APP_BASE_URL + "api/asics";
+const btcPriceURL = process.env.REACT_APP_BASE_URL + "api/btc/btc-price";
+const hashRateStats = process.env.REACT_APP_BASE_URL + "api/btc/hashrate";
 
-export const fetchPoolBlockCounterPerDay = async ({ queryKey }): Promise<number[]> => {
+export const fetchPoolBlockCounterPerDay = async ({
+  queryKey,
+}): Promise<number[]> => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, poolName] = queryKey;
   try {
@@ -14,18 +16,20 @@ export const fetchPoolBlockCounterPerDay = async ({ queryKey }): Promise<number[
     return res.data.data;
   } catch (error) {
     console.log(error);
-    throw(error);
+    throw error;
   }
 };
 
-export interface historicPricesInterface { 
+export interface historicPricesInterface {
   btc_price: number;
   date: string;
   gld_price: number;
   spy_price: number;
 }
 
-export const fetchHistoricPriceRange = async ({ queryKey }): Promise<historicPricesInterface[]> => {
+export const fetchHistoricPriceRange = async ({
+  queryKey,
+}): Promise<historicPricesInterface[]> => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [_, date] = queryKey;
   try {
@@ -35,7 +39,7 @@ export const fetchHistoricPriceRange = async ({ queryKey }): Promise<historicPri
     return res.data;
   } catch (err) {
     console.log(err);
-    throw(err);
+    throw err;
   }
 };
 
@@ -45,7 +49,7 @@ export const fetchAsicData = async () => {
     return res.data;
   } catch (err) {
     console.error(err);
-    throw(err);
+    throw err;
   }
 };
 
@@ -54,16 +58,16 @@ interface currBtcPriceInterface {
   timestamp?: string;
 }
 
-export const fetchCurrentBTCPrice = async (): Promise<currBtcPriceInterface> => {
-  try {
-    const res = await axios.get(btcPriceURL);
-    return res.data;
-  } catch (err) {
-    console.error(err);
-    throw(err);
-  }
-};
-
+export const fetchCurrentBTCPrice =
+  async (): Promise<currBtcPriceInterface> => {
+    try {
+      const res = await axios.get(btcPriceURL);
+      return res.data;
+    } catch (err) {
+      console.error(err);
+      throw err;
+    }
+  };
 
 interface hashRateStatsInterface {
   avg_fees_per_block?: number;
@@ -81,6 +85,6 @@ export const fetchHashRateStats = async (): Promise<hashRateStatsInterface> => {
     return res.data;
   } catch (err) {
     console.error(err);
-    throw(err);
+    throw err;
   }
 };

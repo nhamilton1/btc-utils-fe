@@ -266,7 +266,7 @@ const Asics: React.FC = () => {
 
     const data = {
       key: idx,
-      date: moment(a.date, "MM-DD-YYYY", true).format("MMM Do YY"),
+      date: moment(a.date).format("MMM Do YY"),
       efficiency: a.efficiency.toFixed(1),
       model: a.model,
       price: a.price,

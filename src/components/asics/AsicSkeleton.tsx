@@ -33,6 +33,7 @@ const AsicSkeleton: React.FC<IProps> = ({ columns }) => {
                       key={column.dataIndex}
                       title={true}
                       paragraph={false}
+                      active
                     />
                   );
                 },

@@ -13,12 +13,6 @@ https://btc-utils-fe.herokuapp.com/
 - Normal distribution graph for majority of the major bitcoin mining pools
 - CAGR graph for bitcoin, compairing to GLD and SPY market values
 
-## Other Scripts
-
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
-
 ## Issue/Bug Request
 
 **If you are having an issue with the existing project code, please submit a bug report under the following guidelines:**

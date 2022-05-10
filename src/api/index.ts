@@ -1,10 +1,10 @@
 import axios from "axios";
 
-const poolURL = process.env.REACT_APP_BASE_URL + "api/nd/pool_block_counter";
+const poolURL = process.env.REACT_APP_ASIC_URL + "api/nd/pool_block_counter";
 const historicURL = process.env.REACT_APP_BASE_URL + "api/historic_prices";
-const asicURL = process.env.REACT_APP_BASE_URL + "api/asics";
-const btcPriceURL = process.env.REACT_APP_BASE_URL + "api/btc/btc-price";
-const hashRateStats = process.env.REACT_APP_BASE_URL + "api/btc/hashrate";
+const asicURL = process.env.REACT_APP_ASIC_URL + "api/asics";
+const btcPriceURL = process.env.REACT_APP_ASIC_URL + "api/btc/btc-price";
+const hashRateStats = process.env.REACT_APP_ASIC_URL + "api/btc/hashrate";
 
 export const fetchPoolBlockCounterPerDay = async ({
   queryKey,
